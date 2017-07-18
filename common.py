@@ -29,3 +29,9 @@ def exist_file(filename, overwrite=False, display_info=True):
         if display_info:
             print u'File: %s does not exist. Create new file. ' % filename
         return False
+
+
+def set_matplotlib_backend():
+    import matplotlib
+    if matplotlib.get_backend() == 'MacOSX':
+        matplotlib.use('TkAgg')
