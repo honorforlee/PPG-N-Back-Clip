@@ -3,8 +3,7 @@
 import os
 
 
-def get_base_dir():
-    return os.path.abspath(os.path.dirname(__file__))
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 
 def make_dirs_for_file(filename):
@@ -23,12 +22,18 @@ def exist_file(filename, overwrite=False, display_info=True):
             return False
         else:
             if display_info:
-                print u'File: %s exists. Skip: no new file is created.' % filename
+                print u'File: %s exists.' % filename
             return True
     else:
         if display_info:
-            print u'File: %s does not exist. Create new file. ' % filename
+            print u'File: %s does not exist.' % filename
         return False
+
+
+def parse_iso_time_string(timestamp):
+    import dateutil.parser
+    from dateutil import tz
+    return dateutil.parser.parse(timestamp).astimezone(dateutil.tz.tzlocal()).replace(tzinfo=None)
 
 
 def set_matplotlib_backend(backend=None):
