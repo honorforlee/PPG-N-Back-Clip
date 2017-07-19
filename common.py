@@ -31,7 +31,9 @@ def exist_file(filename, overwrite=False, display_info=True):
         return False
 
 
-def set_matplotlib_backend():
+def set_matplotlib_backend(backend=None):
     import matplotlib
     if matplotlib.get_backend() == 'MacOSX':
         matplotlib.use('TkAgg')
+    if backend:
+        matplotlib.use(backend)
