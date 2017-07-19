@@ -18,7 +18,7 @@ def exist_file(filename, overwrite=False, display_info=True):
         if overwrite:
             os.remove(filename)
             if display_info:
-                print u'File: %s exists. Remove: overwrite old file.' % filename
+                print u'File: %s exists. Overwrite old file.' % filename
             return False
         else:
             if display_info:
