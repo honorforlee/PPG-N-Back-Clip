@@ -104,7 +104,7 @@ for filename_with_ext in fnmatch.filter(os.listdir(raw_ppg_data_dir), '*.txt'):
             length = REST_DURATION * PPG_SAMPLE_RATE
             end_index = start_index + length
             ppg_data = raw_ppg_data[start_index:end_index]
-            if len(ppg_data) != length:
+            if len(ppg_data) < length:
                 print 'Not enough \'rest\' PPG data (%s < %s). Skip.' % (len(ppg_data), length)
                 continue
             output_data[participant][session_id]['rest']['ppg']['sample_rate'] = PPG_SAMPLE_RATE
@@ -118,7 +118,7 @@ for filename_with_ext in fnmatch.filter(os.listdir(raw_ppg_data_dir), '*.txt'):
                 length = BLOCK_DURATION * PPG_SAMPLE_RATE
                 end_index = start_index + length
                 ppg_data = raw_ppg_data[start_index:end_index]
-                if len(ppg_data) != length:
+                if len(ppg_data) < length:
                     print 'Not enough one block PPG data (%s < %s). Skip.' % (len(ppg_data), length)
                     continue
                 block['ppg']['sample_rate'] = PPG_SAMPLE_RATE
@@ -148,7 +148,7 @@ for filename_with_ext in fnmatch.filter(os.listdir(raw_biopac_data_dir), '*.txt'
             end_index = start_index + length
             ecg_data = raw_ecg_data[start_index:end_index]
             skin_conductance_data = raw_skin_conductance_data[start_index:end_index]
-            if len(ecg_data) != length:
+            if len(ecg_data) < length:
                 print 'Not enough \'rest\' ECG/skin conductance data (%s < %s). Skip.' % (len(ecg_data), length)
                 continue
             output_data[participant][session_id]['rest']['ecg']['sample_rate'] = sample_rate
@@ -165,7 +165,7 @@ for filename_with_ext in fnmatch.filter(os.listdir(raw_biopac_data_dir), '*.txt'
                 end_index = start_index + length
                 ecg_data = raw_ecg_data[start_index:end_index]
                 skin_conductance_data = raw_skin_conductance_data[start_index:end_index]
-                if len(ecg_data) != length:
+                if len(ecg_data) < length:
                     print 'Not enough one block ECG/skin conductance data (%s < %s). Skip.' % (len(ecg_data), length)
                     continue
                 block['ecg']['sample_rate'] = sample_rate
