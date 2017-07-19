@@ -4,7 +4,7 @@ from common import get_base_dir, set_matplotlib_backend
 
 import numpy as np
 from scipy import signal
-
+set_matplotlib_backend()
 import matplotlib.pyplot as plt
 b, a = signal.iirfilter(17, [50, 200], rs=60, btype='band', analog=True, ftype='cheby2')
 w, h = signal.freqs(b, a, 1000)
