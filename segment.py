@@ -182,7 +182,7 @@ for participant in output_data:
             del block['start_time']
 
 
-# Save segmented data
+# Save segmented signal data
 for participant in output_data:
     output_filename = '%s.json' % participant
     full_output_filename = os.path.join(segmented_data_dir, output_filename)
