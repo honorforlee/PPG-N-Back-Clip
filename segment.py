@@ -12,7 +12,7 @@ import fnmatch
 import json
 from datetime import datetime, timedelta
 from common import BASE_DIR, make_dirs_for_file, exist_file, parse_iso_time_string
-from config import REST_DURATION, BLOCK_DURATION, PPG_SAMPLE_RATE
+from config import REST_DURATION, BLOCK_DURATION, PPG_SAMPLE_RATE, BIOPAC_HEADER_LINES, BIOPAC_MSEC_PER_SAMPLE_LINE_NUM
 
 
 raw_json_data_dir = os.path.join(BASE_DIR, 'data', 'raw', 'json')
@@ -136,9 +136,9 @@ for filename_with_ext in fnmatch.filter(os.listdir(raw_biopac_data_dir), '*.txt'
     if exist_file(full_filename, display_info=True):
         with open(full_filename, 'r') as f:
             raw_biopac_data = [line.strip() for line in f.readlines()]
-            sample_rate = 1000 / int(raw_biopac_data[1].split(' ')[0].strip())
-            raw_ecg_data = [float(line.split('\t')[1].strip()) for line in raw_biopac_data[11:]]
-            raw_skin_conductance_data = [float(line.split('\t')[3].strip()) for line in raw_biopac_data[11:]]
+            sample_rate = 1000 / int(raw_biopac_data[BIOPAC_MSEC_PER_SAMPLE_LINE_NUM-1].split(' ')[0].strip())
+            raw_ecg_data = [float(line.split('\t')[1].strip()) for line in raw_biopac_data[BIOPAC_HEADER_LINES:]]
+            raw_skin_conductance_data = [float(line.split('\t')[3].strip()) for line in raw_biopac_data[BIOPAC_HEADER_LINES:]]
             tdelta = pre_tdelta
             if tdelta.total_seconds() < 0:
                 print 'Skip \'rest\' ECG/skin conductance data.'
