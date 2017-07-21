@@ -11,8 +11,8 @@ import os
 import fnmatch
 import json
 from config import BASE_DIR
-from tools.common import make_dirs_for_file, exist_file, set_matplotlib_backend
-from tools.signal import plot, smooth_ppg
+from tools.common import make_dirs_for_file, exist_file, set_matplotlib_backend, plot
+from tools.signal import smooth_ppg, segment_ppg
 
 
 segmented_data_dir = os.path.join(BASE_DIR, 'data', 'segmented')
@@ -27,8 +27,8 @@ for filename_with_ext in fnmatch.filter(os.listdir(segmented_data_dir), '*.json'
             # print len(smooth_ppg(segmented_data['1']['blocks'][0]['ppg']['data']))
             set_matplotlib_backend()
             # plot(segmented_data['1']['blocks'][0]['ppg']['data'])
-            y = smooth_ppg(signal=segmented_data['1']['blocks'][0]['ppg']['data'])
+            smoothed_ppg_data = smooth_ppg(signal=segmented_data['1']['blocks'][0]['ppg']['data'])
             import numpy as np
-            print np.mean(y)
-            # plot(y)
+            print np.mean(smoothed_ppg_data)
+            plot(smoothed_ppg_data)
     break

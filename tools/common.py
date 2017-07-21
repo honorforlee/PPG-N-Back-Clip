@@ -39,3 +39,9 @@ def set_matplotlib_backend(backend=None):
         matplotlib.use('TkAgg')
     if backend:
         matplotlib.use(backend)
+
+
+def plot(x):
+    import matplotlib.pyplot as plt
+    plt.plot(x)
+    plt.show()
