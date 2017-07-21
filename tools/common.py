@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 
-import os
-
 
 def make_dirs_for_file(filename):
     try:
+        import os
         os.makedirs(os.path.split(filename)[0])
     except:
         pass
 
 
 def exist_file(filename, overwrite=False, display_info=True):
+    import os
     if os.path.exists(filename):
         if overwrite:
             os.remove(filename)
