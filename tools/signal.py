@@ -9,4 +9,8 @@ def smooth_ppg(signal, sample_rate=200, numtaps=200, cutoff=[0.5, 5.0]):
 
 
 def segment_ppg(signal):
-    return
+    import numpy as np
+    from scipy.signal import argrelmax, argrelmin
+    extrema_index = np.sort(np.unique(np.concatenate((argrelmax(signal)[0], argrelmin(signal)[0]))))
+    extrema = signal[extrema_index]
+    return extrema, extrema_index

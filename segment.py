@@ -44,15 +44,15 @@ for filename_with_ext in fnmatch.filter(os.listdir(raw_json_data_dir), '*.json')
                 'start_time': parse_iso_time_string(raw_json_data['rest_start_timestamp']),
                 'ppg': {
                     'sample_rate': None,
-                    'data': None,
+                    'signal_data': None,
                 },
                 'ecg': {
                     'sample_rate': None,
-                    'data': None,
+                    'signal_data': None,
                 },
                 'skin_conductance': {
                     'sample_rate': None,
-                    'data': None,
+                    'signal_data': None,
                 },
             }
             for block in raw_json_data['blocks']:
@@ -72,15 +72,15 @@ for filename_with_ext in fnmatch.filter(os.listdir(raw_json_data_dir), '*.json')
                     } for item in block['stimuli']],
                     'ppg': {
                         'sample_rate': None,
-                        'data': None,
+                        'signal_data': None,
                     },
                     'ecg': {
                         'sample_rate': None,
-                        'data': None,
+                        'signal_data': None,
                     },
                     'skin_conductance': {
                         'sample_rate': None,
-                        'data': None,
+                        'signal_data': None,
                     },
                 })
 
@@ -110,7 +110,7 @@ for filename_with_ext in fnmatch.filter(os.listdir(raw_ppg_data_dir), '*.txt'):
                 print 'Not enough \'rest\' PPG data (%s < %s). Skip.' % (len(ppg_data), length)
                 continue
             output_data[participant][session_id]['rest']['ppg']['sample_rate'] = PPG_SAMPLE_RATE
-            output_data[participant][session_id]['rest']['ppg']['data'] = ppg_data
+            output_data[participant][session_id]['rest']['ppg']['signal_data'] = ppg_data
             for block in output_data[participant][session_id]['blocks']:
                 tdelta = block['start_time'] - raw_ppg_data_start_time
                 if tdelta.total_seconds() < 0:
@@ -124,7 +124,7 @@ for filename_with_ext in fnmatch.filter(os.listdir(raw_ppg_data_dir), '*.txt'):
                     print 'Not enough one block PPG data (%s < %s). Skip.' % (len(ppg_data), length)
                     continue
                 block['ppg']['sample_rate'] = PPG_SAMPLE_RATE
-                block['ppg']['data'] = ppg_data
+                block['ppg']['signal_data'] = ppg_data
 
 
 # BIOPAC data
@@ -154,9 +154,9 @@ for filename_with_ext in fnmatch.filter(os.listdir(raw_biopac_data_dir), '*.txt'
                 print 'Not enough \'rest\' ECG/skin conductance data (%s < %s). Skip.' % (len(ecg_data), length)
                 continue
             output_data[participant][session_id]['rest']['ecg']['sample_rate'] = sample_rate
-            output_data[participant][session_id]['rest']['ecg']['data'] = ecg_data
+            output_data[participant][session_id]['rest']['ecg']['signal_data'] = ecg_data
             output_data[participant][session_id]['rest']['skin_conductance']['sample_rate'] = sample_rate
-            output_data[participant][session_id]['rest']['skin_conductance']['data'] = skin_conductance_data
+            output_data[participant][session_id]['rest']['skin_conductance']['signal_data'] = skin_conductance_data
             for block in output_data[participant][session_id]['blocks']:
                 tdelta = block['start_time'] - output_data[participant][session_id]['rest']['start_time'] + pre_tdelta
                 if tdelta.total_seconds() < 0:
@@ -171,9 +171,9 @@ for filename_with_ext in fnmatch.filter(os.listdir(raw_biopac_data_dir), '*.txt'
                     print 'Not enough one block ECG/skin conductance data (%s < %s). Skip.' % (len(ecg_data), length)
                     continue
                 block['ecg']['sample_rate'] = sample_rate
-                block['ecg']['data'] = ecg_data
+                block['ecg']['signal_data'] = ecg_data
                 block['skin_conductance']['sample_rate'] = sample_rate
-                block['skin_conductance']['data'] = skin_conductance_data
+                block['skin_conductance']['signal_data'] = skin_conductance_data
 
 
 # Clean up time data

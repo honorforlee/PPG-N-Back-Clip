@@ -41,7 +41,7 @@ def set_matplotlib_backend(backend=None):
         matplotlib.use(backend)
 
 
-def plot(x):
+def plot(args):
     import matplotlib.pyplot as plt
-    plt.plot(x)
+    plt.plot(*args)
     plt.show()
