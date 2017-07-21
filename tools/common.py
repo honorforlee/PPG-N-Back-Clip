@@ -3,9 +3,6 @@
 import os
 
 
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-
-
 def make_dirs_for_file(filename):
     try:
         os.makedirs(os.path.split(filename)[0])
