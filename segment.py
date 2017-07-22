@@ -9,12 +9,12 @@ import os
 import fnmatch
 from datetime import datetime, timedelta
 from config import BASE_DIR
-from config import REST_DURATION, BLOCK_DURATION, PPG_SAMPLE_RATE
-from config import BIOPAC_HEADER_LINES, BIOPAC_MSEC_PER_SAMPLE_LINE_NUM, BIOPAC_ECG_CHANNEL, BIOPAC_SKIN_CONDUCTANCE_CHANNEL
-from tools.common import make_dirs_for_file, exist_file, load_text, load_json, dump_json, parse_iso_time_string
+from ppg.parameter import REST_DURATION, BLOCK_DURATION, PPG_SAMPLE_RATE
+from ppg.parameter import BIOPAC_HEADER_LINES, BIOPAC_MSEC_PER_SAMPLE_LINE_NUM, BIOPAC_ECG_CHANNEL, BIOPAC_SKIN_CONDUCTANCE_CHANNEL
+from ppg.common import make_dirs_for_file, exist_file, load_text, load_json, dump_json, parse_iso_time_string
 
 
-raw_json_data_dir = os.path.join(BASE_DIR, 'data', 'raw', 'json')
+raw_meta_data_dir = os.path.join(BASE_DIR, 'data', 'raw', 'meta')
 raw_ppg_data_dir = os.path.join(BASE_DIR, 'data', 'raw', 'ppg')
 raw_biopac_data_dir = os.path.join(BASE_DIR, 'data', 'raw', 'biopac')
 segmented_data_dir = os.path.join(BASE_DIR, 'data', 'segmented')
@@ -23,8 +23,8 @@ segmented_data_dir = os.path.join(BASE_DIR, 'data', 'segmented')
 output_data = {}
 
 
-# JSON data
-for filename_with_ext in fnmatch.filter(os.listdir(raw_json_data_dir), '*.json'):
+# Meta data
+for filename_with_ext in fnmatch.filter(os.listdir(raw_meta_data_dir), '*.json'):
     filename, file_ext = os.path.splitext(filename_with_ext)
     participant, session_id = filename.split('-')
     if participant not in output_data:
@@ -33,7 +33,7 @@ for filename_with_ext in fnmatch.filter(os.listdir(raw_json_data_dir), '*.json')
         'rest': {},
         'blocks': []
     }
-    full_filename = os.path.join(raw_json_data_dir, filename_with_ext)
+    full_filename = os.path.join(raw_meta_data_dir, filename_with_ext)
     raw_json_data = load_json(filename=full_filename)
     if raw_json_data is not None:
         output_data[participant][session_id]['rest'] = {

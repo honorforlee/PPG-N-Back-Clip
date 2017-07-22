@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from ..config import PPG_SAMPLE_RATE, PPG_FIR_TAP_NUM, PPG_FIR_CUTOFF
+from parameter import PPG_SAMPLE_RATE, PPG_FIR_TAP_NUM, PPG_FIR_CUTOFF
 
 
 def smooth_ppg(signal, sample_rate=PPG_SAMPLE_RATE, numtaps=PPG_FIR_TAP_NUM, cutoff=PPG_FIR_CUTOFF):
@@ -19,7 +19,28 @@ def find_extrema(signal):
 
 
 def validate_ppg(segment, sample_rate=PPG_SAMPLE_RATE):
+    period = float(len(segment)) / float(sample_rate)
+    if period < 0.5 or period > 1.2:
+        return False
+    import numpy as np
+    max_index = np.argmax(segment)
+    if float(max_index) / float(len(segment)) >= 0.5:
+        return False
+    min_index = np.argmin(segment)
+    if not (min_index == 0 or min_index == len(segment) - 1):
+        return False
+    diff = np.diff(segment[:max_index+1], n=1)
+    if min(diff) < 0:
+        return False
+    if abs(segment[0] - segment[-1]) / (segment[max_index] - segment[min_index]) > 0.1:
+        return False
     return True
+
+
+def get_svri(segment):
+    import numpy as np
+    max_index = np.argmax(segment)
+    return np.mean(segment[max_index:]) / np.mean(segment[:max_index])
 
 
 def segment_ppg(signal, sample_rate=PPG_SAMPLE_RATE):
