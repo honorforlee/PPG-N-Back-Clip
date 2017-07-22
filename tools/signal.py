@@ -16,6 +16,10 @@ def find_extrema(signal):
     return zip(extrema_index.tolist(), extrema.tolist())
 
 
+def validate_ppg(segment):
+    return True
+
+
 def segment_ppg(signal):
     threshold = (max(signal) - min(signal)) * 0.5
     segments = []
@@ -25,7 +29,9 @@ def segment_ppg(signal):
     for extrema_index, extrema in find_extrema(signal=signal):
         if last_extrema is not None and extrema - last_extrema > threshold:
             if last_segment_start_index is not None:
-                segments.append(signal.tolist()[last_segment_start_index:last_extrema_index])
+                segment = signal.tolist()[last_segment_start_index:last_extrema_index]
+                if validate_ppg(segment=segment):
+                    segments.append(segment)
             last_segment_start_index = last_extrema_index
         last_extrema_index = extrema_index
         last_extrema = extrema
