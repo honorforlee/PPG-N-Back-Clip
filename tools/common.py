@@ -27,6 +27,29 @@ def exist_file(filename, overwrite=False, display_info=True):
         return False
 
 
+def load_text(filename, display_info=True):
+    if exist_file(filename, display_info=display_info):
+        with open(filename, 'r') as f:
+            return [line.strip() for line in f.readlines()]
+
+
+def load_json(filename, display_info=True):
+    if exist_file(filename, display_info=display_info):
+        with open(filename, 'r') as f:
+            from json import load
+            return load(f)
+
+
+def dump_json(data, filename, overwrite=False, display_info=True):
+    make_dirs_for_file(filename)
+    if not exist_file(filename, overwrite=overwrite, display_info=display_info):
+        if display_info:
+            print 'Write to file: %s' % filename
+        with open(filename, 'w') as f:
+            from json import dump
+            dump(data, f)
+
+
 def parse_iso_time_string(timestamp):
     import dateutil.parser
     from dateutil import tz

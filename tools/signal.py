@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from ..config import PPG_SAMPLE_RATE, PPG_FIR_TAP_NUM, PPG_FIR_CUTOFF
 
-def smooth_ppg(signal, sample_rate=200, numtaps=200, cutoff=[0.5, 5.0]):
+
+def smooth_ppg(signal, sample_rate=PPG_SAMPLE_RATE, numtaps=PPG_FIR_TAP_NUM, cutoff=PPG_FIR_CUTOFF):
     from scipy.signal import firwin, convolve
     if numtaps % 2 == 0:
         numtaps += 1
@@ -16,11 +18,11 @@ def find_extrema(signal):
     return zip(extrema_index.tolist(), extrema.tolist())
 
 
-def validate_ppg(segment):
+def validate_ppg(segment, sample_rate=PPG_SAMPLE_RATE):
     return True
 
 
-def segment_ppg(signal):
+def segment_ppg(signal, sample_rate=PPG_SAMPLE_RATE):
     threshold = (max(signal) - min(signal)) * 0.5
     segments = []
     last_extrema_index = None
@@ -30,7 +32,7 @@ def segment_ppg(signal):
         if last_extrema is not None and extrema - last_extrema > threshold:
             if last_segment_start_index is not None:
                 segment = signal.tolist()[last_segment_start_index:last_extrema_index]
-                if validate_ppg(segment=segment):
+                if validate_ppg(segment=segment, sample_rate=sample_rate):
                     segments.append(segment)
             last_segment_start_index = last_extrema_index
         last_extrema_index = extrema_index
