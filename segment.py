@@ -8,7 +8,7 @@ sys.setdefaultencoding('utf-8');
 import os
 import fnmatch
 from datetime import datetime, timedelta
-from config import BASE_DIR
+from configure import BASE_DIR
 from ppg.parameter import REST_DURATION, BLOCK_DURATION, PPG_SAMPLE_RATE
 from ppg.parameter import BIOPAC_HEADER_LINES, BIOPAC_MSEC_PER_SAMPLE_LINE_NUM, BIOPAC_ECG_CHANNEL, BIOPAC_SKIN_CONDUCTANCE_CHANNEL
 from ppg.common import make_dirs_for_file, exist_file, load_text, load_json, dump_json, parse_iso_time_string

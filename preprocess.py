@@ -8,7 +8,7 @@ sys.setdefaultencoding('utf-8');
 import os
 import fnmatch
 import json
-from config import BASE_DIR
+from configure import BASE_DIR
 from ppg.common import make_dirs_for_file, exist_file, load_json, dump_json
 from ppg.signal import smooth_ppg, segment_ppg
 
