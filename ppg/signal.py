@@ -37,12 +37,6 @@ def validate_ppg(segment, sample_rate=PPG_SAMPLE_RATE):
     return True
 
 
-def get_svri(segment):
-    import numpy as np
-    max_index = np.argmax(segment)
-    return np.mean(segment[max_index:]) / np.mean(segment[:max_index])
-
-
 def segment_ppg(signal, sample_rate=PPG_SAMPLE_RATE):
     threshold = (max(signal) - min(signal)) * 0.5
     segments = []
