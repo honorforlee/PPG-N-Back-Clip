@@ -6,11 +6,23 @@ Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature
 ├── data/
 │   ├── raw/
 │   │   ├── meta/
+│   │   │   ├── <participant>-<session_id>.json
+│   │   │   └── ...
 │   │   ├── ppg/
+│   │   │   ├── <participant>-<session_id>-<year>_<month>_<day>_<hour>_<minute>_<second>.json
+│   │   │   └── ...
 │   │   └── biopac/
+│   │   │   ├── <participant>-<session_id>-<seconds_before_start>.json
+│   │   │   └── ...
 │   ├── segmented/
+│   │   ├── <participant>.json
+│   │   └── ...
 │   ├── preprocessed/
+│   │   ├── <participant>.json
+│   │   └── ...
 │   └── extracted/
+│   │   ├── <participant>.json
+│   │   └── ...
 ├── ppg/
 │   ├── __init__.py
 │   ├── common.py
