@@ -12,39 +12,39 @@ def scale(data):
     return [(x - data_min) / (data_max - data_min) for x in data]
 
 
-def extract_svri(segment):
+def extract_svri(single_waveform):
     import numpy as np
-    max_index = np.argmax(segment)
-    segment_scaled = scale(segment)
-    return np.mean(segment_scaled[max_index:]) / np.mean(segment_scaled[:max_index])
+    max_index = np.argmax(single_waveform)
+    single_waveform_scaled = scale(single_waveform)
+    return np.mean(single_waveform_scaled[max_index:]) / np.mean(single_waveform_scaled[:max_index])
 
 
-def extract_ppg45(segment, sample_rate=PPG_SAMPLE_RATE):
+def extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE):
     features = []
     import numpy as np
     from scipy.signal import argrelmax, argrelmin
-    maxima_index = argrelmax(np.array(segment))[0]
-    minima_index = argrelmin(np.array(segment))[0]
-    derivative_1 = np.diff(segment, n=1) * float(sample_rate)
+    maxima_index = argrelmax(np.array(single_waveform))[0]
+    minima_index = argrelmin(np.array(single_waveform))[0]
+    derivative_1 = np.diff(single_waveform, n=1) * float(sample_rate)
     derivative_1_maxima_index = argrelmax(np.array(derivative_1))[0]
     derivative_1_minima_index = argrelmin(np.array(derivative_1))[0]
-    derivative_2 = np.diff(segment, n=2) * float(sample_rate)
+    derivative_2 = np.diff(single_waveform, n=2) * float(sample_rate)
     derivative_2_maxima_index = argrelmax(np.array(derivative_2))[0]
     derivative_2_minima_index = argrelmin(np.array(derivative_2))[0]
-    sp_mag = np.abs(np.fft.fft(segment, n=next_pow2(len(segment))*16))
+    sp_mag = np.abs(np.fft.fft(single_waveform, n=next_pow2(len(single_waveform))*16))
     freqs = np.fft.fftfreq(len(sp_mag))
     sp_mag_maxima_index = argrelmax(sp_mag)[0]
     # x
-    x = segment[maxima_index[0]]
+    x = single_waveform[maxima_index[0]]
     features.append(x)
     # y
-    y = segment[maxima_index[1]]
+    y = single_waveform[maxima_index[1]]
     features.append(y)
     # z
-    z = segment[minima_index[0]]
+    z = single_waveform[minima_index[0]]
     features.append(z)
     # t_pi
-    t_pi = float(len(segment)) / float(sample_rate)
+    t_pi = float(len(single_waveform)) / float(sample_rate)
     features.append(t_pi)
     # y/x
     features.append(y / x)
@@ -67,21 +67,21 @@ def extract_ppg45(segment, sample_rate=PPG_SAMPLE_RATE):
     delta_t = t_3 - t_2
     features.append(delta_t)
     # width
-    segment_halfmax = max(segment) / 2
+    single_waveform_halfmax = max(single_waveform) / 2
     width = 0
-    for value in segment[maxima_index[0]::-1]:
-        if value >= segment_halfmax:
+    for value in single_waveform[maxima_index[0]::-1]:
+        if value >= single_waveform_halfmax:
             width += 1
         else:
             break
-    for value in segment[maxima_index[0]+1:]:
-        if value >= segment_halfmax:
+    for value in single_waveform[maxima_index[0]+1:]:
+        if value >= single_waveform_halfmax:
             width += 1
         else:
             break
     features.append(float(width) / float(sample_rate))
     # A_2/A_1
-    features.append(sum(segment[:maxima_index[0]]) / sum(segment[maxima_index[0]:]))
+    features.append(sum(single_waveform[:maxima_index[0]]) / sum(single_waveform[maxima_index[0]:]))
     # t_1/x
     features.append(t_1 / x)
     # y/(t_pi-t_3)
@@ -145,18 +145,18 @@ def extract_ppg45(segment, sample_rate=PPG_SAMPLE_RATE):
     f_base = freqs[sp_mag_maxima_index[0]] * sample_rate
     features.append(f_base)
     # sp_mag_base
-    sp_mag_base = sp_mag[sp_mag_maxima_index[0]] / len(segment)
+    sp_mag_base = sp_mag[sp_mag_maxima_index[0]] / len(single_waveform)
     features.append(sp_mag_base)
     # f_2
     f_2 = freqs[sp_mag_maxima_index[1]] * sample_rate
     features.append(f_2)
     # sp_mag_2
-    sp_mag_2 = sp_mag[sp_mag_maxima_index[1]] / len(segment)
+    sp_mag_2 = sp_mag[sp_mag_maxima_index[1]] / len(single_waveform)
     features.append(sp_mag_2)
     # f_3
     f_3 = freqs[sp_mag_maxima_index[2]] * sample_rate
     features.append(f_3)
     # sp_mag_3
-    sp_mag_3 = sp_mag[sp_mag_maxima_index[2]] / len(segment)
+    sp_mag_3 = sp_mag[sp_mag_maxima_index[2]] / len(single_waveform)
     features.append(sp_mag_3)
     return features
