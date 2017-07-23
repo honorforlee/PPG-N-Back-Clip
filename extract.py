@@ -23,16 +23,16 @@ for filename_with_ext in fnmatch.filter(os.listdir(preprocessed_data_dir), '*.js
     if json_data is not None:
         for session_id in json_data:
             if json_data[session_id]['rest']['ppg']['segments'] is not None:
-                json_data[session_id]['rest']['ppg']['svri'] = [extract_svri(segment) for segment in json_data[session_id]['rest']['ppg']['segments']]
-                json_data[session_id]['rest']['ppg']['ppg45'] = [extract_ppg45(segment) for segment in json_data[session_id]['rest']['ppg']['segments']]
+                json_data[session_id]['rest']['ppg']['svri'] = [extract_svri(segment=segment) for segment in json_data[session_id]['rest']['ppg']['segments']]
+                json_data[session_id]['rest']['ppg']['ppg45'] = [extract_ppg45(segment=segment, sample_rate=json_data[session_id]['rest']['ppg']['sample_rate']) for segment in json_data[session_id]['rest']['ppg']['segments']]
             else:
                 json_data[session_id]['rest']['ppg']['svri'] = None
                 json_data[session_id]['rest']['ppg']['ppg45'] = None
             del json_data[session_id]['rest']['ppg']['segments']
             for block in json_data[session_id]['blocks']:
                 if block['ppg']['segments'] is not None:
-                    block['ppg']['svri'] = [extract_svri(segment) for segment in block['ppg']['segments']]
-                    block['ppg']['ppg45'] = [extract_ppg45(segment) for segment in block['ppg']['segments']]
+                    block['ppg']['svri'] = [extract_svri(segment=segment) for segment in block['ppg']['segments']]
+                    block['ppg']['ppg45'] = [extract_ppg45(segment=segment, sample_rate=block['ppg']['sample_rate']) for segment in block['ppg']['segments']]
                 else:
                     block['ppg']['svri'] = None
                     block['ppg']['ppg45'] = None
