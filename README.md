@@ -89,8 +89,8 @@ python extract.py
 ### Common Tools
 ### Parameter Setting
 ### Signal Processing
-#### Smoothing
-#### Single-Waveform Extraction
+#### PPG Signal Smoothing
+#### PPG Single-Waveform Extraction
 ### Feature Extraction
 #### PPG-45
 #### Stress-Induced Vascular Response Index (sVRI)
