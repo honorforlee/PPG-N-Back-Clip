@@ -26,6 +26,10 @@ def validate_ppg(segment, sample_rate=PPG_SAMPLE_RATE):
     max_index = np.argmax(segment)
     if float(max_index) / float(len(segment)) >= 0.5:
         return False
+    from scipy.signal import argrelmax
+    if len(argrelmax(np.array(segment))[0]) < 2:
+        print 'Y'
+        return False
     min_index = np.argmin(segment)
     if not (min_index == 0 or min_index == len(segment) - 1):
         return False
