@@ -177,10 +177,10 @@ make_dirs_for_file(filename)
 exist_file(filename, overwrite=False, display_info=True)
 ```
 ```python
-load_text(filename, display_info=True)
+text_data = load_text(filename, display_info=True)
 ```
 ```python
-load_json(filename, display_info=True)
+json_data = load_json(filename, display_info=True)
 ```
 ```python
 dump_json(data, filename, overwrite=False, display_info=True)
@@ -198,7 +198,10 @@ scaled_data = scale(data)
 set_matplotlib_backend(backend=None)
 ```
 ```python
-plot(args)
+plot(args, backend=None)
+```
+```python
+semilogy(args, backend=None)
 ```
 
 ### Module: `ppg.parameter`
