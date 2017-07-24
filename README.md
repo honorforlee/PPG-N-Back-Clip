@@ -112,14 +112,14 @@ python extract.py
 ### Classification
 
 ## API Reference
-### Configuration
+### Module: `configure`
 Excerpt from `configure.py`:
 
 ```python
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 ```
 
-### Common Tools
+### Module: `ppg.common`
 ```python
 make_dirs_for_file(filename)
 ```
@@ -151,7 +151,7 @@ set_matplotlib_backend(backend=None)
 plot(args)
 ```
 
-### Parameter Setting
+### Module: `ppg.parameter`
 Excerpt from `ppg/parameter.py`:
 
 ```python
@@ -167,7 +167,7 @@ BIOPAC_MSEC_PER_SAMPLE_LINE_NUM = 2
 BIOPAC_ECG_CHANNEL = 1
 BIOPAC_SKIN_CONDUCTANCE_CHANNEL = 3
 ```
-### Signal Processing
+### Module: `ppg.signal`
 #### Peak Finding
 ```python
 find_extrema(signal)
@@ -193,7 +193,7 @@ validate_ppg_single_waveform(single_waveform, sample_rate=PPG_SAMPLE_RATE)
 extract_ppg_single_waveform(signal, sample_rate=PPG_SAMPLE_RATE)
 ```
 
-### Feature Extraction
+### Module: `ppg.feature`
 #### PPG Features
 ##### PPG-45
 ```python
