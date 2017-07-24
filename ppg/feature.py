@@ -148,13 +148,13 @@ def extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE):
     return features
 
 
-def extract_svri(single_waveform):
+def extract_average_svri(single_waveform):
     max_index = np.argmax(single_waveform)
     single_waveform_scaled = scale(single_waveform)
     return np.mean(single_waveform_scaled[max_index:]) / np.mean(single_waveform_scaled[:max_index])
 
 
-def extract_mean_skin_conductance_level(signal):
+def extract_average_skin_conductance_level(signal):
     return np.mean(signal)
 
 
@@ -162,7 +162,7 @@ def extract_minimum_skin_conductance_level(signal):
     return min(signal)
 
 
-def extract_mean_rri(rri):
+def extract_average_rri(rri):
     return np.mean(rri)
 
 
