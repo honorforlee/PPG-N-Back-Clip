@@ -174,7 +174,7 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 make_dirs_for_file(filename)
 ```
 ```python
-exist_file(filename, overwrite=False, display_info=True)
+result = exist_file(filename, overwrite=False, display_info=True)
 ```
 ```python
 text_data = load_text(filename, display_info=True)
