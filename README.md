@@ -101,7 +101,7 @@ pip install -r requirements.txt
 |3|`z`|Dicrotic notch|
 |4|<code>t<sub>pi</sub></code>|Pulse interval|
 |5|`y/x`|Augmentation index|
-|6|`(x-y)/x`|Alternative augmentation index|
+|6|`(x-y)/x`|Relative augmentation index|
 |7|`z/x`||
 |8|`(y-z)/x`||
 |9|<code>t<sub>1</sub></code>|Systolic peak time|
