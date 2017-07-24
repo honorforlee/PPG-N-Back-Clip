@@ -57,8 +57,6 @@ pip install -r requirements.txt
 
 ## Data Format
 ### Raw Data
-- **Location:** `data/raw`
-
 #### Meta Data
 - **Location:** `data/raw/meta`
 - **Filename format:** `<participant>-<session_id>.json`
