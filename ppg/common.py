@@ -78,3 +78,10 @@ def plot(args, backend=None):
     import matplotlib.pyplot as plt
     plt.plot(*args)
     plt.show()
+
+
+def semilogy(args, backend=None):
+    set_matplotlib_backend(backend=backend)
+    import matplotlib.pyplot as plt
+    plt.semilogy(*args)
+    plt.show()

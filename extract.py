@@ -11,7 +11,7 @@ from configure import BASE_DIR
 from ppg.common import make_dirs_for_file, exist_file, load_json, dump_json
 from ppg.feature import extract_ppg45, extract_svri
 from ppg.feature import extract_mean_skin_conductance_level, extract_minimum_skin_conductance_level
-from ppg.feature import extract_mean_rri, extract_rmssd
+from ppg.feature import extract_mean_rri, extract_rmssd, extract_hrv_power
 
 
 preprocessed_data_dir = os.path.join(BASE_DIR, 'data', 'preprocessed')
@@ -40,10 +40,16 @@ for filename_with_ext in fnmatch.filter(os.listdir(preprocessed_data_dir), '*.js
             if json_data[session_id]['rest']['ecg']['rri'] is not None:
                 json_data[session_id]['rest']['ecg']['mean_rri'] = extract_mean_rri(rri=json_data[session_id]['rest']['ecg']['rri'])
                 json_data[session_id]['rest']['ecg']['rmssd'] = extract_rmssd(rri=json_data[session_id]['rest']['ecg']['rri'])
+                mf_hrv_power, hf_hrv_power = extract_hrv_power(rri=json_data[session_id]['rest']['ecg']['rri_interpolated'], sample_rate=json_data[session_id]['rest']['ecg']['sample_rate'])
+                json_data[session_id]['rest']['ecg']['mf_hrv_power'] = mf_hrv_power
+                json_data[session_id]['rest']['ecg']['hf_hrv_power'] = hf_hrv_power
             else:
                 json_data[session_id]['rest']['ecg']['mean_rri'] = None
                 json_data[session_id]['rest']['ecg']['rmssd'] = None
+                json_data[session_id]['rest']['ecg']['mf_hrv_power'] = None
+                json_data[session_id]['rest']['ecg']['hf_hrv_power'] = None
             del json_data[session_id]['rest']['ecg']['rri']
+            del json_data[session_id]['rest']['ecg']['rri_interpolated']
             for block in json_data[session_id]['blocks']:
                 if block['ppg']['single_waveforms'] is not None:
                     block['ppg']['ppg45'] = [extract_ppg45(single_waveform=single_waveform, sample_rate=block['ppg']['sample_rate']) for single_waveform in block['ppg']['single_waveforms']]
@@ -62,9 +68,15 @@ for filename_with_ext in fnmatch.filter(os.listdir(preprocessed_data_dir), '*.js
                 if block['ecg']['rri'] is not None:
                     block['ecg']['mean_rri'] = extract_mean_rri(rri=block['ecg']['rri'])
                     block['ecg']['rmssd'] = extract_rmssd(rri=block['ecg']['rri'])
+                    mf_hrv_power, hf_hrv_power = extract_hrv_power(rri=block['ecg']['rri_interpolated'], sample_rate=block['ecg']['sample_rate'])
+                    block['ecg']['mf_hrv_power'] = mf_hrv_power
+                    block['ecg']['hf_hrv_power'] = hf_hrv_power
                 else:
                     block['ecg']['mean_rri'] = None
                     block['ecg']['rmssd'] = None
+                    block['ecg']['mf_hrv_power'] = None
+                    block['ecg']['hf_hrv_power'] = None
                 del block['ecg']['rri']
+                del block['ecg']['rri_interpolated']
         full_output_filename = os.path.join(extracted_data_dir, filename_with_ext)
         dump_json(data=json_data, filename=full_output_filename, overwrite=True)
