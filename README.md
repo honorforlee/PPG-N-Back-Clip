@@ -81,6 +81,18 @@ pip install -r requirements.txt
 - **Location:** `data/extracted/`
 - **Filename format:** `<participant>.json`
 
+## Sensors and Features
+|Sensor|Feature|Dimension|
+|:--|:--|:-:|
+|PPG Finger Clip|PPG-45|45|
+||Stress-Induced Vascular Response Index (sVRI)|1|
+|Skin Conductance Electrodes|Mean Skin Conductance Level|1|
+||Minimum Skin Conductance Level|1|
+|ECG Electrodes|Heart Rate (R-R Interval, RRI)|1|
+||Root Mean Squared Successive Difference (RMSSD)|1|
+||Mid-Frequency Heart Rate Variability (MF-HRV)|1|
+||High-Frequency Heart Rate Variability (HF-HRV)|1|
+
 ## Procedures
 ### Raw Data Segmentation
 ```sh
@@ -101,35 +113,66 @@ python extract.py
 
 ## API Reference
 ### Configuration
+Excerpt from `configure.py`:
+
+```python
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+```
+
 ### Common Tools
+```python
+make_dirs_for_file(filename)
+```
+```python
+exist_file(filename, overwrite=False, display_info=True)
+```
+```python
+load_text(filename, display_info=True)
+```
+```python
+load_json(filename, display_info=True)
+```
+```python
+dump_json(data, filename, overwrite=False, display_info=True)
+```
+```python
+parse_iso_time_string(timestamp)
+```
+```python
+set_matplotlib_backend(backend=None)
+```
+```python
+plot(args)
+```
+
 ### Parameter Setting
+Excerpt from `ppg/parameter.py`:
+
+```python
+REST_DURATION = 5 * 60
+BLOCK_DURATION = 2 * 60
+
+PPG_SAMPLE_RATE = 200
+PPG_FIR_FILTER_TAP_NUM = 200
+PPG_FILTER_CUTOFF = [0.5, 5.0]
+
+BIOPAC_HEADER_LINES = 11
+BIOPAC_MSEC_PER_SAMPLE_LINE_NUM = 2
+BIOPAC_ECG_CHANNEL = 1
+BIOPAC_SKIN_CONDUCTANCE_CHANNEL = 3
+```
 ### Signal Processing
 #### PPG Signal Smoothing
 #### PPG Single-Waveform Extraction
 ### Feature Extraction
 #### PPG Features
 ##### PPG-45
-- **Dimension:** 45
-
 ##### Stress-Induced Vascular Response Index (sVRI)
-- **Dimension:** 1
-
 #### Skin Conductance Features
 ##### Mean Skin Conductance Level
-- **Dimension:** 1
-
 ##### Minimum Skin Conductance Level
-- **Dimension:** 1
-
 #### ECG Features
 ##### Heart Rate (R-R Interval, RRI)
-- **Dimension:** 1
-
 ##### Root Mean Squared Successive Difference (RMSSD)
-- **Dimension:** 1
-
 ##### Mid-Frequency Heart Rate Variability (MF-HRV)
-- **Dimension:** 1
-
 ##### High-Frequency Heart Rate Variability (HF-HRV)
-- **Dimension:** 1
