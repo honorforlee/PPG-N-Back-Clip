@@ -152,3 +152,12 @@ def extract_svri(single_waveform):
     max_index = np.argmax(single_waveform)
     single_waveform_scaled = scale(single_waveform)
     return np.mean(single_waveform_scaled[max_index:]) / np.mean(single_waveform_scaled[:max_index])
+
+
+def extract_mean_skin_conductance_level(signal):
+    import numpy as np
+    return np.mean(signal)
+
+
+def extract_minimum_skin_conductance_level(signal):
+    return min(signal)

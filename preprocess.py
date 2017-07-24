@@ -7,7 +7,6 @@ sys.setdefaultencoding('utf-8');
 
 import os
 import fnmatch
-import json
 from configure import BASE_DIR
 from ppg.common import make_dirs_for_file, exist_file, load_json, dump_json
 from ppg.signal import smooth_ppg_signal, extract_ppg_single_waveform
