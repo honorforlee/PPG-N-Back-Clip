@@ -107,6 +107,29 @@ python extract.py
 #### PPG Signal Smoothing
 #### PPG Single-Waveform Extraction
 ### Feature Extraction
-#### PPG-45
-#### Stress-Induced Vascular Response Index (sVRI)
+#### PPG Features
+##### PPG-45
+- **Dimension:** 45
 
+##### Stress-Induced Vascular Response Index (sVRI)
+- **Dimension:** 1
+
+#### Skin Conductance Features
+##### Mean Skin Conductance Level
+- **Dimension:** 1
+
+##### Minimum Skin Conductance Level
+- **Dimension:** 1
+
+#### ECG Features
+##### Heart Rate (R-R Interval, RRI)
+- **Dimension:** 1
+
+##### Root Mean Squared Successive Difference (RMSSD)
+- **Dimension:** 1
+
+##### Mid-Frequency Heart Rate Variability (MF-HRV)
+- **Dimension:** 1
+
+##### High-Frequency Heart Rate Variability (HF-HRV)
+- **Dimension:** 1
