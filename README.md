@@ -295,7 +295,7 @@ avarage_rri = extract_average_rri(rri)
 rmssd = extract_rmssd(rri)
 ```
 
-##### Middle/High-Frequency Heart Rate Variability (MF-HRV)
+##### Middle/High-Frequency Heart Rate Variability (MF/HF-HRV)
 ```python
 mf_hrv_power, hf_hrv_power = extract_hrv_power(rri, sample_rate)
 ```
