@@ -173,6 +173,13 @@ def extract_rmssd(rri):
 def extract_hrv_power(rri, sample_rate):
     f, psd = welch(rri, sample_rate, nperseg=len(rri))
     step = f[1] - f[0]
-    mf_hrv_power = sum([x[1] for x in zip(f.tolist(), psd.tolist()) if x[0] >= ECG_MF_HRV_CUTOFF[0] and x[0] <= ECG_MF_HRV_CUTOFF[1]]) * step
-    hf_hrv_power = sum([x[1] for x in zip(f.tolist(), psd.tolist()) if x[0] >= ECG_HF_HRV_CUTOFF[0] and x[0] <= ECG_HF_HRV_CUTOFF[1]]) * step
-    return mf_hrv_power, hf_hrv_power
+    mf_hrv_power = 0
+    hf_hrv_power = 0
+    for x in zip(f.tolist(), psd.tolist()):
+        if x[0] >= ECG_MF_HRV_CUTOFF[0] and x[0] < ECG_MF_HRV_CUTOFF[1]:
+            mf_hrv_power += x[1]
+        elif x[0] >= ECG_HF_HRV_CUTOFF[0] and x[0] <= ECG_HF_HRV_CUTOFF[1]:
+            hf_hrv_power += x[1]
+        elif x[0] > ECG_HF_HRV_CUTOFF[1]:
+            break
+    return mf_hrv_power * step, hf_hrv_power * step
