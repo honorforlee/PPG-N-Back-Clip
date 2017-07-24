@@ -103,7 +103,7 @@ pip install -r requirements.txt
 |5|`y/x`|Augmentation index|
 |6|`(x-y)/x`|Alternative augmentation index|
 |7|`z/x`||
-|8|`|y-z|/x`||
+|8|`(y-z)/x`||
 |9|<code>t<sub>1</sub></code>|Systolic peak time|
 |10|<code>t<sub>2</sub></code>|Diastolic peak time|
 |11|<code>t<sub>3</sub></code>|Dicrotic notch time|

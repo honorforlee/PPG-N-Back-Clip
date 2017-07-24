@@ -44,8 +44,8 @@ def extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE):
     features.append((x - y) / x)
     # z/x
     features.append(z / x)
-    # |y-z|/x
-    features.append(abs(y - z) / x)
+    # (y-z)/x
+    features.append((y - z) / x)
     # t_1
     t_1 = float(maxima_index[0] + 1) / float(sample_rate)
     features.append(t_1)
