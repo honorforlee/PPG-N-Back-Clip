@@ -84,16 +84,16 @@ pip install -r requirements.txt
 ## Sensors and Features
 |Sensor|Feature|Dimension|
 |:--|:--|:-:|
-|PPG Finger Clip|PPG-45 (39 Time-Domain, 9 Frequency-Domain)|45|
+|PPG finger clip|PPG-45 (39 time-domain, 9 frequency-domain)|45|
 ||Stress-Induced Vascular Response Index (sVRI)|1|
-|Skin Conductance Electrodes|Mean Skin Conductance Level|1|
-||Minimum Skin Conductance Level|1|
-|ECG Electrodes|Heart Rate (R-R Interval, RRI)|1|
-||Root Mean Squared Successive Difference (RMSSD)|1|
-||Mid-Frequency Heart Rate Variability (MF-HRV)|1|
-||High-Frequency Heart Rate Variability (HF-HRV)|1|
+|Skin conductance electrodes|Mean skin conductance level|1|
+||Minimum skin conductance level|1|
+|ECG Electrodes|Heart rate (R-R interval, RRI)|1|
+||Root mean squared successive difference (RMSSD)|1|
+||Mid-frequency heart rate variability (MF-HRV)|1|
+||High-frequency heart rate variability (HF-HRV)|1|
 
-### PPG-45 Definition
+### PPG-45 Feature Definition
 |#|Feature|Description|
 |--:|:--|:--|
 |1|`x`|Systolic peak|
