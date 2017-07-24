@@ -4,13 +4,6 @@ from parameter import PPG_SAMPLE_RATE
 from common import next_pow2, scale
 
 
-def extract_svri(single_waveform):
-    import numpy as np
-    max_index = np.argmax(single_waveform)
-    single_waveform_scaled = scale(single_waveform)
-    return np.mean(single_waveform_scaled[max_index:]) / np.mean(single_waveform_scaled[:max_index])
-
-
 def extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE):
     features = []
     import numpy as np
@@ -152,3 +145,10 @@ def extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE):
     sp_mag_3 = sp_mag[sp_mag_maxima_index[2]] / len(single_waveform)
     features.append(sp_mag_3)
     return features
+
+
+def extract_svri(single_waveform):
+    import numpy as np
+    max_index = np.argmax(single_waveform)
+    single_waveform_scaled = scale(single_waveform)
+    return np.mean(single_waveform_scaled[max_index:]) / np.mean(single_waveform_scaled[:max_index])

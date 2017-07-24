@@ -85,7 +85,7 @@ pip install -r requirements.txt
 |Sensor|Feature|Dimension|
 |:--|:--|:-:|
 |PPG finger clip|PPG-45 (39 time-domain, 9 frequency-domain)|45|
-||Stress-Induced Vascular Response Index (sVRI)|1|
+||Stress-induced vascular response index (sVRI)|1|
 |Skin conductance electrodes|Mean skin conductance level|1|
 ||Minimum skin conductance level|1|
 |ECG Electrodes|Heart rate (R-R interval, RRI)|1|
@@ -246,12 +246,12 @@ extract_ppg_single_waveform(signal, sample_rate=PPG_SAMPLE_RATE)
 #### PPG Features
 ##### PPG-45
 ```python
-extract_svri(single_waveform)
+extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE)
 ```
 
 ##### Stress-Induced Vascular Response Index (sVRI)
 ```python
-extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE)
+extract_svri(single_waveform)
 ```
 
 #### Skin Conductance Features
