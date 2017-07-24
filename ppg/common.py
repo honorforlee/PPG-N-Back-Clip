@@ -73,7 +73,8 @@ def set_matplotlib_backend(backend=None):
         matplotlib.use(backend)
 
 
-def plot(args):
+def plot(args, backend=None):
+    set_matplotlib_backend(backend=backend)
     import matplotlib.pyplot as plt
     plt.plot(*args)
     plt.show()

@@ -36,6 +36,8 @@ for filename_with_ext in fnmatch.filter(os.listdir(preprocessed_data_dir), '*.js
                 json_data[session_id]['rest']['skin_conductance']['mean_level'] = None
                 json_data[session_id]['rest']['skin_conductance']['minimum_level'] = None
             del json_data[session_id]['rest']['skin_conductance']['signal']
+            if json_data[session_id]['rest']['ecg']['signal'] is not None:
+                continue
             for block in json_data[session_id]['blocks']:
                 if block['ppg']['single_waveforms'] is not None:
                     block['ppg']['ppg45'] = [extract_ppg45(single_waveform=single_waveform, sample_rate=block['ppg']['sample_rate']) for single_waveform in block['ppg']['single_waveforms']]

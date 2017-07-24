@@ -42,6 +42,7 @@ Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature
 ```
 
 ## Requirements
+- [macOS](https://www.apple.com/macos/) (Recommended)
 - [Python 2.7+](https://docs.python.org/2/)
 - [Pip](https://pypi.python.org/pypi/pip)
 - [Virtualenv](https://virtualenv.pypa.io/en/stable/)

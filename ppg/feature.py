@@ -161,3 +161,19 @@ def extract_mean_skin_conductance_level(signal):
 
 def extract_minimum_skin_conductance_level(signal):
     return min(signal)
+
+
+def extract_mean_rri(signal):
+    return
+
+
+def extract_rmssd(signal):
+    return
+
+
+def extract_mf_hrv(signal):
+    return
+
+
+def extract_hf_hrv(signal):
+    return
