@@ -1,15 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from parameter import PPG_SAMPLE_RATE
-
-
-def next_pow2(x):
-    return 1<<(x-1).bit_length()
-
-def scale(data):
-    data_max = max(data)
-    data_min = min(data)
-    return [(x - data_min) / (data_max - data_min) for x in data]
+from common import next_pow2, scale
 
 
 def extract_svri(single_waveform):

@@ -139,6 +139,12 @@ dump_json(data, filename, overwrite=False, display_info=True)
 parse_iso_time_string(timestamp)
 ```
 ```python
+next_pow2(x)
+```
+```python
+scale(data)
+```
+```python
 set_matplotlib_backend(backend=None)
 ```
 ```python
@@ -162,12 +168,38 @@ BIOPAC_ECG_CHANNEL = 1
 BIOPAC_SKIN_CONDUCTANCE_CHANNEL = 3
 ```
 ### Signal Processing
+#### Peak Finding
+```python
+find_extrema(signal)
+```
+
 #### PPG Signal Smoothing
+```python
+smooth_ppg_signal(signal, sample_rate=PPG_SAMPLE_RATE, numtaps=PPG_FIR_FILTER_TAP_NUM, cutoff=PPG_FILTER_CUTOFF)
+```
+
+#### PPG Single-Waveform Validation
+```python
+validate_ppg_single_waveform(single_waveform, sample_rate=PPG_SAMPLE_RATE)
+```
+
 #### PPG Single-Waveform Extraction
+```python
+extract_ppg_single_waveform(signal, sample_rate=PPG_SAMPLE_RATE)
+```
+
 ### Feature Extraction
 #### PPG Features
 ##### PPG-45
+```python
+extract_svri(single_waveform)
+```
+
 ##### Stress-Induced Vascular Response Index (sVRI)
+```python
+extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE)
+```
+
 #### Skin Conductance Features
 ##### Mean Skin Conductance Level
 ##### Minimum Skin Conductance Level

@@ -3,19 +3,19 @@
 from parameter import PPG_SAMPLE_RATE, PPG_FIR_FILTER_TAP_NUM, PPG_FILTER_CUTOFF
 
 
-def smooth_ppg_signal(signal, sample_rate=PPG_SAMPLE_RATE, numtaps=PPG_FIR_FILTER_TAP_NUM, cutoff=PPG_FILTER_CUTOFF):
-    from scipy.signal import firwin, convolve
-    if numtaps % 2 == 0:
-        numtaps += 1
-    return convolve(signal, firwin(numtaps, [x*2/sample_rate for x in cutoff], pass_zero=False), mode='valid')
-
-
 def find_extrema(signal):
     import numpy as np
     from scipy.signal import argrelmax, argrelmin
     extrema_index = np.sort(np.unique(np.concatenate((argrelmax(signal)[0], argrelmin(signal)[0]))))
     extrema = signal[extrema_index]
     return zip(extrema_index.tolist(), extrema.tolist())
+
+
+def smooth_ppg_signal(signal, sample_rate=PPG_SAMPLE_RATE, numtaps=PPG_FIR_FILTER_TAP_NUM, cutoff=PPG_FILTER_CUTOFF):
+    from scipy.signal import firwin, convolve
+    if numtaps % 2 == 0:
+        numtaps += 1
+    return convolve(signal, firwin(numtaps, [x*2/sample_rate for x in cutoff], pass_zero=False), mode='valid')
 
 
 def validate_ppg_single_waveform(single_waveform, sample_rate=PPG_SAMPLE_RATE):

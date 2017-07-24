@@ -56,6 +56,15 @@ def parse_iso_time_string(timestamp):
     return dateutil.parser.parse(timestamp).astimezone(dateutil.tz.tzlocal()).replace(tzinfo=None)
 
 
+def next_pow2(x):
+    return 1<<(x-1).bit_length()
+
+def scale(data):
+    data_max = max(data)
+    data_min = min(data)
+    return [(x - data_min) / (data_max - data_min) for x in data]
+
+
 def set_matplotlib_backend(backend=None):
     import matplotlib
     if matplotlib.get_backend() == 'MacOSX':
