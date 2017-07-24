@@ -26,9 +26,9 @@ Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature
 ├── ppg/
 │   ├── __init__.py
 │   ├── common.py
-│   ├── feature.py
 │   ├── parameter.py
-│   └── signal.py
+│   ├── signal.py
+│   └── feature.py
 ├── configure.py
 ├── segment.py
 ├── preprocess.py
@@ -84,7 +84,7 @@ pip install -r requirements.txt
 ## Sensors and Features
 |Sensor|Feature|Dimension|
 |:--|:--|:-:|
-|PPG Finger Clip|PPG-45|45|
+|PPG Finger Clip|PPG-45 (39 Time-Domain, 9 Frequency-Domain)|45|
 ||Stress-Induced Vascular Response Index (sVRI)|1|
 |Skin Conductance Electrodes|Mean Skin Conductance Level|1|
 ||Minimum Skin Conductance Level|1|
@@ -92,6 +92,55 @@ pip install -r requirements.txt
 ||Root Mean Squared Successive Difference (RMSSD)|1|
 ||Mid-Frequency Heart Rate Variability (MF-HRV)|1|
 ||High-Frequency Heart Rate Variability (HF-HRV)|1|
+
+### PPG-45 Definition
+|#|Feature|Description|
+|--:|:--|:--|
+|1|`x`|Systolic peak|
+|2|`y`|Diastolic peak|
+|3|`z`|Dicrotic notch|
+|4|<code>t<sub>pi</sub></code>|Pulse interval|
+|5|`y/x`|Augmentation index|
+|6|`(x-y)/x`|Alternative augmentation index|
+|7|`z/x`||
+|8|`|y-z|/x`||
+|9|<code>t<sub>1</sub></code>|Systolic peak time|
+|10|<code>t<sub>2</sub></code>|Diastolic peak time|
+|11|<code>t<sub>3</sub></code>|Dicrotic notch time|
+|12|`∆T`|Time between systolic and diastolic peaks|
+|13|`w`|Full width at half systolic peak|
+|14|<code>A<sub>2</sub>/A<sub>1</sub></code>|Inflection point area ratio|
+|15|<code>t<sub>1</sub>/x</code>|Systolic peak rising slope|
+|16|<code>y/(t<sub>pi</sub>-t<sub>3</sub>)</code>|Diastolic peak falling slope|
+|17|<code>t<sub>1</sub>/t<sub>pi</sub></code>||
+|18|<code>t<sub>2</sub>/t<sub>pi</sub></code>||
+|19|<code>t<sub>3</sub>/t<sub>pi</sub></code>||
+|20|<code>∆T/t<sub>pi</sub></code>||
+|21|<code>t<sub>a1</sub></code>||
+|22|<code>t<sub>b1</sub></code>||
+|23|<code>t<sub>e1</sub></code>||
+|24|<code>t<sub>f1</sub></code>||
+|25|<code>b<sub>2</sub>/a<sub>2</sub></code>||
+|26|<code>e<sub>2</sub>/a<sub>2</sub></code>||
+|27|<code>(b<sub>2</sub>+e<sub>2</sub>)/a<sub>2</sub></code>||
+|28|<code>t<sub>a2</sub></code>||
+|29|<code>t<sub>b2</sub></code>||
+|30|<code>t<sub>a1</sub>/t<sub>pi</sub></code>||
+|31|<code>t<sub>b1</sub>/t<sub>pi</sub></code>||
+|32|<code>t<sub>e1</sub>/t<sub>pi</sub></code>||
+|33|<code>t<sub>f1</sub>/t<sub>pi</sub></code>||
+|34|<code>t<sub>a2</sub>/t<sub>pi</sub></code>||
+|35|<code>t<sub>b2</sub>/t<sub>pi</sub></code>||
+|36|<code>(t<sub>a1</sub>+t<sub>a2</sub>)/t<sub>pi</sub></code>||
+|37|<code>(t<sub>b1</sub>+t<sub>b2</sub>)/t<sub>pi</sub></code>||
+|38|<code>(t<sub>e1</sub>+t<sub>2</sub>)/t<sub>pi</sub></code>||
+|39|<code>(t<sub>f1</sub>+t<sub>3</sub>)/t<sub>pi</sub></code>||
+|40|<code>f<sub>base</sub></code>|Fundamental component frequency|
+|41|<code>\|s<sub>base</sub>\|</code>|Fundamental component magnitude|
+|42|<code>f<sub>2</sub></code>|2<sup>nd</sup> harmonic frequency|
+|43|<code>\|s<sub>2</sub>\|</code>|2<sup>nd</sup> harmonic magnitude|
+|44|<code>f<sub>3</sub></code>|3<sup>rd</sup> harmonic frequency|
+|45|<code>\|s<sub>3</sub>\|</code>|3<sup>rd</sup> harmonic magnitude|
 
 ## Procedures
 ### Raw Data Segmentation
