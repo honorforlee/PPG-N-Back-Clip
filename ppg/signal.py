@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from parameter import PPG_SAMPLE_RATE, PPG_FIR_FILTER_TAP_NUM, PPG_FILTER_CUTOFF
+from parameter import MINIMUM_PULSE_CYCLE, MAXIMUM_PULSE_CYCLE
+from parameter import PPG_SAMPLE_RATE, PPG_FIR_FILTER_TAP_NUM, PPG_FILTER_CUTOFF, PPG_SYSTOLIC_PEAK_DETECTION_THRESHOLD_COEFFICIENT
+from parameter import ECG_R_PEAK_DETECTION_THRESHOLD
 
 
 def find_extrema(signal):
     import numpy as np
+    signal = np.array(signal)
     from scipy.signal import argrelmax, argrelmin
     extrema_index = np.sort(np.unique(np.concatenate((argrelmax(signal)[0], argrelmin(signal)[0]))))
     extrema = signal[extrema_index]
@@ -15,12 +18,12 @@ def smooth_ppg_signal(signal, sample_rate=PPG_SAMPLE_RATE, numtaps=PPG_FIR_FILTE
     from scipy.signal import firwin, convolve
     if numtaps % 2 == 0:
         numtaps += 1
-    return convolve(signal, firwin(numtaps, [x*2/sample_rate for x in cutoff], pass_zero=False), mode='valid')
+    return convolve(signal, firwin(numtaps, [x*2/sample_rate for x in cutoff], pass_zero=False), mode='valid').tolist()
 
 
 def validate_ppg_single_waveform(single_waveform, sample_rate=PPG_SAMPLE_RATE):
     period = float(len(single_waveform)) / float(sample_rate)
-    if period < 0.5 or period > 1.2:
+    if period < MINIMUM_PULSE_CYCLE or period > MAXIMUM_PULSE_CYCLE:
         return False
     import numpy as np
     max_index = np.argmax(single_waveform)
@@ -41,18 +44,36 @@ def validate_ppg_single_waveform(single_waveform, sample_rate=PPG_SAMPLE_RATE):
 
 
 def extract_ppg_single_waveform(signal, sample_rate=PPG_SAMPLE_RATE):
-    threshold = (max(signal) - min(signal)) * 0.5
+    threshold = (max(signal) - min(signal)) * PPG_SYSTOLIC_PEAK_DETECTION_THRESHOLD_COEFFICIENT
     single_waveforms = []
-    last_extrema_index = None
-    last_extrema = None
+    last_extremum_index = None
+    last_extremum = None
     last_single_waveform_start_index = None
-    for extrema_index, extrema in find_extrema(signal=signal):
-        if last_extrema is not None and extrema - last_extrema > threshold:
+    for extremum_index, extremum in find_extrema(signal=signal):
+        if last_extremum is not None and extremum - last_extremum > threshold:
             if last_single_waveform_start_index is not None:
-                single_waveform = signal.tolist()[last_single_waveform_start_index:last_extrema_index]
+                single_waveform = signal[last_single_waveform_start_index:last_extremum_index]
                 if validate_ppg_single_waveform(single_waveform=single_waveform, sample_rate=sample_rate):
                     single_waveforms.append(single_waveform)
-            last_single_waveform_start_index = last_extrema_index
-        last_extrema_index = extrema_index
-        last_extrema = extrema
+            last_single_waveform_start_index = last_extremum_index
+        last_extremum_index = extremum_index
+        last_extremum = extremum
     return single_waveforms
+
+
+def extract_rri(signal, sample_rate):
+    rri = []
+    last_extremum_index = None
+    last_extremum = None
+    last_r_peak_index = None
+    for extremum_index, extremum in find_extrema(signal=signal):
+        if last_extremum is not None and extremum - last_extremum > ECG_R_PEAK_DETECTION_THRESHOLD:
+            if last_r_peak_index is not None:
+                interval = float(extremum_index - last_r_peak_index) / float(sample_rate)
+                if interval >= MINIMUM_PULSE_CYCLE and interval <= MAXIMUM_PULSE_CYCLE:
+                    rri.append(interval)
+            last_r_peak_index = extremum_index
+        last_extremum_index = extremum_index
+        last_extremum = extremum
+    print rri
+    return rri

@@ -163,8 +163,9 @@ def extract_minimum_skin_conductance_level(signal):
     return min(signal)
 
 
-def extract_mean_rri(signal):
-    return
+def extract_mean_rri(rri):
+    import numpy as np
+    return np.mean(rri)
 
 
 def extract_rmssd(signal):
