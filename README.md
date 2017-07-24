@@ -58,27 +58,27 @@ pip install -r requirements.txt
 ## Data Format
 ### Raw Data
 #### Meta Data
-- **Location:** `data/raw/meta`
+- **Location:** `data/raw/meta/`
 - **Filename format:** `<participant>-<session_id>.json`
 
 #### PPG Data
-- **Location:** `data/raw/ppg`
+- **Location:** `data/raw/ppg/`
 - **Filename format:** `<participant>-<session_id>-<year>_<month>_<day>_<hour>_<minute>_<second>.txt`
 
 #### BIOPAC Data
-- **Location:** `data/raw/biopac`
+- **Location:** `data/raw/biopac/`
 - **Filename format:** `<participant>-<session_id>-<seconds_before_start>.txt`
 
 ### Segmented Raw Data
-- **Location:** `data/segmented`
+- **Location:** `data/segmented/`
 - **Filename format:** `<participant>.json`
 
 ### Preprocessed Data
-- **Location:** `data/segmented`
+- **Location:** `data/preprocessed/`
 - **Filename format:** `<participant>.json`
 
 ### Extracted Feature Data
-- **Location:** `data/extracted`
+- **Location:** `data/extracted/`
 - **Filename format:** `<participant>.json`
 
 ## Procedures
