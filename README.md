@@ -169,6 +169,31 @@ Excerpt from `configure.py`:
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 ```
 
+### Module: `ppg.parameter`
+Excerpt from `ppg/parameter.py`:
+
+```python
+REST_DURATION = 5 * 60
+BLOCK_DURATION = 2 * 60
+
+MINIMUM_PULSE_CYCLE = 0.5
+MAXIMUM_PULSE_CYCLE = 1.2
+
+PPG_SAMPLE_RATE = 200
+PPG_FIR_FILTER_TAP_NUM = 200
+PPG_FILTER_CUTOFF = [0.5, 5.0]
+PPG_SYSTOLIC_PEAK_DETECTION_THRESHOLD_COEFFICIENT = 0.5
+
+BIOPAC_HEADER_LINES = 11
+BIOPAC_MSEC_PER_SAMPLE_LINE_NUM = 2
+BIOPAC_ECG_CHANNEL = 1
+BIOPAC_SKIN_CONDUCTANCE_CHANNEL = 3
+
+ECG_R_PEAK_DETECTION_THRESHOLD = 2.0
+ECG_MF_HRV_CUTOFF = [0.07, 0.15]
+ECG_HF_HRV_CUTOFF = [0.15, 0.5]
+```
+
 ### Module: `ppg.common`
 ```python
 make_dirs_for_file(filename)
@@ -204,30 +229,6 @@ plot(args, backend=None)
 semilogy(args, backend=None)
 ```
 
-### Module: `ppg.parameter`
-Excerpt from `ppg/parameter.py`:
-
-```python
-REST_DURATION = 5 * 60
-BLOCK_DURATION = 2 * 60
-
-MINIMUM_PULSE_CYCLE = 0.5
-MAXIMUM_PULSE_CYCLE = 1.2
-
-PPG_SAMPLE_RATE = 200
-PPG_FIR_FILTER_TAP_NUM = 200
-PPG_FILTER_CUTOFF = [0.5, 5.0]
-PPG_SYSTOLIC_PEAK_DETECTION_THRESHOLD_COEFFICIENT = 0.5
-
-BIOPAC_HEADER_LINES = 11
-BIOPAC_MSEC_PER_SAMPLE_LINE_NUM = 2
-BIOPAC_ECG_CHANNEL = 1
-BIOPAC_SKIN_CONDUCTANCE_CHANNEL = 3
-
-ECG_R_PEAK_DETECTION_THRESHOLD = 2.0
-ECG_MF_HRV_CUTOFF = [0.07, 0.15]
-ECG_HF_HRV_CUTOFF = [0.15, 0.5]
-```
 ### Module: `ppg.signal`
 #### Peak Finding
 ```python
