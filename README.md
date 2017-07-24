@@ -175,7 +175,12 @@ find_extrema(signal)
 
 #### PPG Signal Smoothing
 ```python
-smooth_ppg_signal(signal, sample_rate=PPG_SAMPLE_RATE, numtaps=PPG_FIR_FILTER_TAP_NUM, cutoff=PPG_FILTER_CUTOFF)
+smooth_ppg_signal(
+    signal, 
+    sample_rate=PPG_SAMPLE_RATE,
+    numtaps=PPG_FIR_FILTER_TAP_NUM, 
+    cutoff=PPG_FILTER_CUTOFF
+)
 ```
 
 #### PPG Single-Waveform Validation
