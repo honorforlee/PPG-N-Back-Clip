@@ -256,7 +256,15 @@ extract_svri(single_waveform)
 
 #### Skin Conductance Features
 ##### Mean Skin Conductance Level
+```python
+extract_mean_skin_conductance_level(signal)
+```
+
 ##### Minimum Skin Conductance Level
+```python
+extract_minimum_skin_conductance_level(signal)
+```
+
 #### ECG Features
 ##### Heart Rate (R-R Interval, RRI)
 ##### Root Mean Squared Successive Difference (RMSSD)
