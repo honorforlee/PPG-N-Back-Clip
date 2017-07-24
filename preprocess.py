@@ -28,9 +28,12 @@ for filename_with_ext in fnmatch.filter(os.listdir(segmented_data_dir), '*.json'
                 json_data[session_id]['rest']['ppg']['single_waveforms'] = None
             del json_data[session_id]['rest']['ppg']['signal']
             if json_data[session_id]['rest']['ecg']['signal'] is not None:
-                json_data[session_id]['rest']['ecg']['rri'] = extract_rri(signal=json_data[session_id]['rest']['ecg']['signal'], sample_rate=json_data[session_id]['rest']['ecg']['sample_rate'])
+                rri, rri_time = extract_rri(signal=json_data[session_id]['rest']['ecg']['signal'], sample_rate=json_data[session_id]['rest']['ecg']['sample_rate'])
+                json_data[session_id]['rest']['ecg']['rri'] = rri
+                json_data[session_id]['rest']['ecg']['rri_time'] = rri_time
             else:
                 json_data[session_id]['rest']['ecg']['rri'] = None
+                json_data[session_id]['rest']['ecg']['rri_time'] = None
             del json_data[session_id]['rest']['ecg']['signal']
             for block in json_data[session_id]['blocks']:
                 if block['ppg']['signal'] is not None:
@@ -39,9 +42,12 @@ for filename_with_ext in fnmatch.filter(os.listdir(segmented_data_dir), '*.json'
                     block['ppg']['single_waveforms'] = None
                 del block['ppg']['signal']
                 if block['ecg']['signal'] is not None:
-                    block['ecg']['rri'] = extract_rri(signal=block['ecg']['signal'], sample_rate=block['ecg']['sample_rate'])
+                    rri, rri_time = extract_rri(signal=block['ecg']['signal'], sample_rate=block['ecg']['sample_rate'])
+                    block['ecg']['rri'] = rri
+                    block['ecg']['rri_time'] = rri_time
                 else:
                     block['ecg']['rri'] = None
+                    block['ecg']['rri_time'] = None
                 del block['ecg']['signal']
         full_output_filename = os.path.join(preprocessed_data_dir, filename_with_ext)
         dump_json(data=json_data, filename=full_output_filename, overwrite=True)

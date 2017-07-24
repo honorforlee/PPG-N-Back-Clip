@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 
+import os
+from json import load, dump
+
 
 def make_dirs_for_file(filename):
     try:
-        import os
         os.makedirs(os.path.split(filename)[0])
     except:
         pass
 
 
 def exist_file(filename, overwrite=False, display_info=True):
-    import os
     if os.path.exists(filename):
         if overwrite:
             os.remove(filename)
@@ -36,7 +37,6 @@ def load_text(filename, display_info=True):
 def load_json(filename, display_info=True):
     if exist_file(filename, display_info=display_info):
         with open(filename, 'r') as f:
-            from json import load
             return load(f)
 
 
@@ -46,7 +46,6 @@ def dump_json(data, filename, overwrite=False, display_info=True):
         if display_info:
             print 'Write to file: %s' % filename
         with open(filename, 'w') as f:
-            from json import dump
             dump(data, f)
 
 
@@ -58,6 +57,7 @@ def parse_iso_time_string(timestamp):
 
 def next_pow2(x):
     return 1<<(x-1).bit_length()
+
 
 def scale(data):
     data_max = max(data)

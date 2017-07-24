@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
 
+import numpy as np
+from scipy.signal import argrelmax, argrelmin, firwin, convolve
 from parameter import MINIMUM_PULSE_CYCLE, MAXIMUM_PULSE_CYCLE
 from parameter import PPG_SAMPLE_RATE, PPG_FIR_FILTER_TAP_NUM, PPG_FILTER_CUTOFF, PPG_SYSTOLIC_PEAK_DETECTION_THRESHOLD_COEFFICIENT
 from parameter import ECG_R_PEAK_DETECTION_THRESHOLD
 
 
 def find_extrema(signal):
-    import numpy as np
     signal = np.array(signal)
-    from scipy.signal import argrelmax, argrelmin
     extrema_index = np.sort(np.unique(np.concatenate((argrelmax(signal)[0], argrelmin(signal)[0]))))
     extrema = signal[extrema_index]
     return zip(extrema_index.tolist(), extrema.tolist())
 
 
 def smooth_ppg_signal(signal, sample_rate=PPG_SAMPLE_RATE, numtaps=PPG_FIR_FILTER_TAP_NUM, cutoff=PPG_FILTER_CUTOFF):
-    from scipy.signal import firwin, convolve
     if numtaps % 2 == 0:
         numtaps += 1
     return convolve(signal, firwin(numtaps, [x*2/sample_rate for x in cutoff], pass_zero=False), mode='valid').tolist()
@@ -25,11 +24,9 @@ def validate_ppg_single_waveform(single_waveform, sample_rate=PPG_SAMPLE_RATE):
     period = float(len(single_waveform)) / float(sample_rate)
     if period < MINIMUM_PULSE_CYCLE or period > MAXIMUM_PULSE_CYCLE:
         return False
-    import numpy as np
     max_index = np.argmax(single_waveform)
     if float(max_index) / float(len(single_waveform)) >= 0.5:
         return False
-    from scipy.signal import argrelmax
     if len(argrelmax(np.array(single_waveform))[0]) < 2:
         return False
     min_index = np.argmin(single_waveform)
@@ -63,6 +60,7 @@ def extract_ppg_single_waveform(signal, sample_rate=PPG_SAMPLE_RATE):
 
 def extract_rri(signal, sample_rate):
     rri = []
+    rri_time = []
     last_extremum_index = None
     last_extremum = None
     last_r_peak_index = None
@@ -72,8 +70,8 @@ def extract_rri(signal, sample_rate):
                 interval = float(extremum_index - last_r_peak_index) / float(sample_rate)
                 if interval >= MINIMUM_PULSE_CYCLE and interval <= MAXIMUM_PULSE_CYCLE:
                     rri.append(interval)
+                    rri_time.append(float(extremum_index) / float(sample_rate))
             last_r_peak_index = extremum_index
         last_extremum_index = extremum_index
         last_extremum = extremum
-    print rri
-    return rri
+    return rri, rri_time

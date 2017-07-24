@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import numpy as np
+from scipy.signal import argrelmax, argrelmin
 from parameter import PPG_SAMPLE_RATE
+from parameter import ECG_MF_HRV_CUTOFF, ECG_HF_HRV_CUTOFF
 from common import next_pow2, scale
 
 
 def extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE):
     features = []
-    import numpy as np
-    from scipy.signal import argrelmax, argrelmin
     maxima_index = argrelmax(np.array(single_waveform))[0]
     minima_index = argrelmin(np.array(single_waveform))[0]
     derivative_1 = np.diff(single_waveform, n=1) * float(sample_rate)
@@ -148,14 +149,12 @@ def extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE):
 
 
 def extract_svri(single_waveform):
-    import numpy as np
     max_index = np.argmax(single_waveform)
     single_waveform_scaled = scale(single_waveform)
     return np.mean(single_waveform_scaled[max_index:]) / np.mean(single_waveform_scaled[:max_index])
 
 
 def extract_mean_skin_conductance_level(signal):
-    import numpy as np
     return np.mean(signal)
 
 
@@ -164,17 +163,16 @@ def extract_minimum_skin_conductance_level(signal):
 
 
 def extract_mean_rri(rri):
-    import numpy as np
     return np.mean(rri)
 
 
-def extract_rmssd(signal):
+def extract_rmssd(rri):
+    return np.sqrt(np.mean(np.square(np.diff(rri))))
+
+
+def extract_mf_hrv(rri):
     return
 
 
-def extract_mf_hrv(signal):
-    return
-
-
-def extract_hf_hrv(signal):
+def extract_hf_hrv(rri):
     return

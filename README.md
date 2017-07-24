@@ -208,14 +208,22 @@ Excerpt from `ppg/parameter.py`:
 REST_DURATION = 5 * 60
 BLOCK_DURATION = 2 * 60
 
+MINIMUM_PULSE_CYCLE = 0.5
+MAXIMUM_PULSE_CYCLE = 1.2
+
 PPG_SAMPLE_RATE = 200
 PPG_FIR_FILTER_TAP_NUM = 200
 PPG_FILTER_CUTOFF = [0.5, 5.0]
+PPG_SYSTOLIC_PEAK_DETECTION_THRESHOLD_COEFFICIENT = 0.5
 
 BIOPAC_HEADER_LINES = 11
 BIOPAC_MSEC_PER_SAMPLE_LINE_NUM = 2
 BIOPAC_ECG_CHANNEL = 1
 BIOPAC_SKIN_CONDUCTANCE_CHANNEL = 3
+
+ECG_R_PEAK_DETECTION_THRESHOLD = 2.0
+ECG_MF_HRV_CUTOFF = [0.07, 0.15]
+ECG_HF_HRV_CUTOFF = [0.15, 0.5]
 ```
 ### Module: `ppg.signal`
 #### Peak Finding
@@ -241,6 +249,11 @@ validate_ppg_single_waveform(single_waveform, sample_rate=PPG_SAMPLE_RATE)
 #### PPG Single-Waveform Extraction
 ```python
 extract_ppg_single_waveform(signal, sample_rate=PPG_SAMPLE_RATE)
+```
+
+### RRI Extraction
+```python
+extract_rri(signal, sample_rate)
 ```
 
 ### Module: `ppg.feature`
