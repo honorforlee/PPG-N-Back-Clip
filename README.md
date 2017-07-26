@@ -1,6 +1,21 @@
 # PPG
 Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature Fusion Model
 
+## Installation
+### Requirements
+- [macOS](https://www.apple.com/macos/) (Recommended)
+- [Python 2.7+](https://docs.python.org/2/)
+- [Pip](https://pypi.python.org/pypi/pip)
+- [Virtualenv](https://virtualenv.pypa.io/en/stable/)
+
+```sh
+git clone https://github.com/iROCKBUNNY/PPG.git
+cd PPG
+virtualenv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
 ## File Structure
 ```
 ├── data/
@@ -42,21 +57,6 @@ Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature
 ├── README.md
 ├── LICENSE
 └── .gitignore
-```
-
-## Requirements
-- [macOS](https://www.apple.com/macos/) (Recommended)
-- [Python 2.7+](https://docs.python.org/2/)
-- [Pip](https://pypi.python.org/pypi/pip)
-- [Virtualenv](https://virtualenv.pypa.io/en/stable/)
-
-## Installation
-```sh
-git clone https://github.com/iROCKBUNNY/PPG.git
-cd PPG
-virtualenv venv
-source venv/bin/activate
-pip install -r requirements.txt
 ```
 
 ## Data Format
