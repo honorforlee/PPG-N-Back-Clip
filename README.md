@@ -2,13 +2,13 @@
 Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature Fusion Model
 
 ## Installation
-### Requirements
+#### Requirements
 - [macOS](https://www.apple.com/macos/) (Recommended)
 - [Python 2.7](https://docs.python.org/2/)
 - [Pip](https://pypi.python.org/pypi/pip)
 - [Virtualenv](https://virtualenv.pypa.io/en/stable/)
 
-### Installing with Virtualenv
+#### Installing with Virtualenv
 ```sh
 git clone https://github.com/iROCKBUNNY/PPG.git
 cd PPG
@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ```
 
 ## Usage
-##### Raw Data Segmentation
+##### Raw data segmentation
 ```sh
 python segment.py
 ```
@@ -28,9 +28,14 @@ python segment.py
 python preprocess.py
 ```
 
-##### Feature Extraction
+##### Feature extraction
 ```sh
 python extract.py
+```
+
+##### Training set and test set spliting
+```sh
+python split.py
 ```
 
 ##### Classification
@@ -39,8 +44,7 @@ python classify.py
 ```
 
 ## Data Definition
-### Raw Data
-#### Meta Data
+### N-Back Task Meta Data
 - **Location:** `data/raw/meta/`
 - **Filename format:** `<participant>-<session_id>.json`
 
@@ -79,7 +83,7 @@ python classify.py
 }
 ```
 
-#### PPG Data
+### PPG Signal Data
 - **Location:** `data/raw/ppg/`
 - **Filename format:** `<participant>-<session_id>-<year>_<month>_<day>_<hour>_<minute>_<second>.txt`
 
@@ -92,7 +96,7 @@ python classify.py
 ...
 ```
 
-#### BIOPAC Data
+### BIOPAC Signal Data
 - **Location:** `data/raw/biopac/`
 - **Filename format:** `<participant>-<session_id>-<seconds_before_start>.txt`
 
@@ -115,7 +119,7 @@ min	CH1	CH2	CH9
 ...
 ```
 
-### Segmented Raw Data
+### Segmented Signal Data
 - **Location (complete data):** `data/segmented/`
 - **Location (incomplete data):** `data/segmented/incomplete/`
 - **Filename format:** `<participant>.json`
@@ -401,6 +405,8 @@ BIOPAC_SKIN_CONDUCTANCE_CHANNEL = 3
 ECG_R_PEAK_DETECTION_THRESHOLD = 2.0
 ECG_MF_HRV_CUTOFF = [0.07, 0.15]
 ECG_HF_HRV_CUTOFF = [0.15, 0.5]
+
+TRAINING_DATA_RATIO = 0.75
 ```
 
 ### Module: `ppg.signal`
@@ -505,10 +511,13 @@ dump_json(data, pathname, overwrite=False, display_info=True)
 datetime = parse_iso_time_string(timestamp)
 ```
 ```python
-result = next_pow2(x)
+next_pow2 = next_pow2(x)
 ```
 ```python
 scaled_data = scale(data)
+```
+```python
+change_ratio = get_change_ratio(data, baseline)
 ```
 ```python
 set_matplotlib_backend(backend=None)
@@ -556,6 +565,7 @@ semilogy(args, backend=None)
 ├── segment.py
 ├── preprocess.py
 ├── extract.py
+├── split.py
 ├── classify.py
 ├── requirements.txt
 ├── README.md

@@ -77,6 +77,16 @@ def scale(data):
     return [(x - data_min) / (data_max - data_min) for x in data]
 
 
+def get_change_ratio(data, baseline):
+    def change_ratio(value, baseline):
+        return (value - baseline) / baseline
+    if isinstance(baseline, list):
+        import numpy as np
+        baseline = np.mean(baseline, axis=0)
+        return [change_ratio(value=value, baseline=baseline).tolist() for value in data]
+    return change_ratio(value=data, baseline=baseline)
+
+
 def set_matplotlib_backend(backend=None):
     import matplotlib
     if matplotlib.get_backend() == 'MacOSX':

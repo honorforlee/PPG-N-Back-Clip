@@ -8,8 +8,8 @@ sys.setdefaultencoding('utf-8');
 import os
 import fnmatch
 from configure import BASE_DIR
-from ppg.utils import make_dirs_for_file, exist, load_json, dump_json
-from ppg.feature import get_change_ratio
+from ppg.parameter import TRAINING_DATA_RATIO
+from ppg.utils import make_dirs_for_file, exist, load_json, dump_json, get_change_ratio
 
 
 extracted_data_dir = os.path.join(BASE_DIR, 'data', 'extracted')
@@ -48,14 +48,14 @@ if exist(pathname=extracted_data_dir):
                     })
             output_data = {
                 'train': {
-                    '0': feature_data['0'][:3],
-                    '1': feature_data['1'][:3],
-                    '2': feature_data['2'][:3],
+                    '0': feature_data['0'][:int(len(feature_data['0']) * TRAINING_DATA_RATIO)],
+                    '1': feature_data['1'][:int(len(feature_data['1']) * TRAINING_DATA_RATIO)],
+                    '2': feature_data['2'][:int(len(feature_data['2']) * TRAINING_DATA_RATIO)],
                 },
                 'test': {
-                    '0': feature_data['0'][3:],
-                    '1': feature_data['1'][3:],
-                    '2': feature_data['2'][3:],
+                    '0': feature_data['0'][int(len(feature_data['0']) * TRAINING_DATA_RATIO):],
+                    '1': feature_data['1'][int(len(feature_data['1']) * TRAINING_DATA_RATIO):],
+                    '2': feature_data['2'][int(len(feature_data['2']) * TRAINING_DATA_RATIO):],
                 },
             }
             dump_json(data=output_data, pathname=os.path.join(splited_data_dir, filename_with_ext), overwrite=True)
