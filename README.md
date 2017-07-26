@@ -392,22 +392,22 @@ min	CH1	CH2	CH9
 |45|<code>\|s<sub>3</sub>\|</code>|3<sup>rd</sup> harmonic magnitude|
 
 ## Procedures
-### Raw Data Segmentation
+##### Raw Data Segmentation
 ```sh
 python segment.py
 ```
 
-### Preprocessing
+##### Preprocessing
 ```sh
 python preprocess.py
 ```
 
-### Feature Extraction
+##### Feature Extraction
 ```sh
 python extract.py
 ```
 
-### Classification
+##### Classification
 ```sh
 python classify.py
 ```
@@ -447,12 +447,12 @@ ECG_HF_HRV_CUTOFF = [0.15, 0.5]
 ```
 
 ### Module: `ppg.signal`
-###### Peak Finding
+##### Peak Finding
 ```python
 extrema = find_extrema(signal)
 ```
 
-###### PPG Signal Smoothing
+##### PPG Signal Smoothing
 ```python
 smoothed_ppg_signal = smooth_ppg_signal(
     signal,
@@ -462,61 +462,61 @@ smoothed_ppg_signal = smooth_ppg_signal(
 )
 ```
 
-###### PPG Single-Waveform Validation
+##### PPG Single-Waveform Validation
 ```python
 result = validate_ppg_single_waveform(single_waveform, sample_rate=PPG_SAMPLE_RATE)
 ```
 
-###### PPG Single-Waveform Extraction
+##### PPG Single-Waveform Extraction
 ```python
 single_waveforms = extract_ppg_single_waveform(signal, sample_rate=PPG_SAMPLE_RATE)
 ```
 
-###### RRI Extraction
+##### RRI Extraction
 ```python
 rri, rri_time = extract_rri(signal, sample_rate)
 ```
 
-###### RRI Interpolation
+##### RRI Interpolation
 ```python
 rri_interpolated = interpolate_rri(rri, rri_time, sample_rate)
 ```
 
 ### Module: `ppg.feature`
 #### PPG Features
-###### PPG-45
+##### PPG-45
 ```python
 extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE)
 ```
 
-###### Stress-Induced Vascular Response Index (sVRI)
+##### Stress-Induced Vascular Response Index (sVRI)
 ```python
 svri = extract_svri(single_waveform)
 ```
 
 #### Skin Conductance Features
-###### Average Skin Conductance Level
+##### Average Skin Conductance Level
 ```python
 average_skin_conductance_level = extract_average_skin_conductance_level(signal)
 ```
 
-###### Minimum Skin Conductance Level
+##### Minimum Skin Conductance Level
 ```python
 minimum_skin_conductance_level = extract_minimum_skin_conductance_level(signal)
 ```
 
 #### ECG Features
-###### Heart Rate (R-R Interval, RRI)
+##### Heart Rate (R-R Interval, RRI)
 ```python
 avarage_rri = extract_average_rri(rri)
 ```
 
-###### Root Mean Squared Successive Difference (RMSSD)
+##### Root Mean Squared Successive Difference (RMSSD)
 ```python
 rmssd = extract_rmssd(rri)
 ```
 
-###### Middle/High-Frequency Heart Rate Variability (MF/HF-HRV)
+##### Middle/High-Frequency Heart Rate Variability (MF/HF-HRV)
 ```python
 mf_hrv_power, hf_hrv_power = extract_hrv_power(rri, sample_rate)
 ```
