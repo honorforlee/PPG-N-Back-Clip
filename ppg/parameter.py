@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
+TOTAL_SESSION_NUM = 2
 REST_DURATION = 5 * 60
 BLOCK_DURATION = 2 * 60
 

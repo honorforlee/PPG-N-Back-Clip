@@ -4,48 +4,60 @@ import os
 from json import load, dump
 
 
-def make_dirs_for_file(filename):
+def path_type(pathname):
+    if os.path.isfile(pathname):
+        return 'File'
+    if os.path.isdir(pathname):
+        return 'Directory'
+    if os.path.islink(pathname):
+        return 'Symbolic Link'
+    if os.path.ismount(pathname):
+        return 'Mount Point'
+    return 'Path'
+
+
+def make_dirs_for_file(pathname):
     try:
-        os.makedirs(os.path.split(filename)[0])
+        os.makedirs(os.path.split(pathname)[0])
     except:
         pass
 
 
-def exist_file(filename, overwrite=False, display_info=True):
-    if os.path.exists(filename):
+def exist(pathname, overwrite=False, display_info=True):
+    if os.path.exists(pathname):
         if overwrite:
-            os.remove(filename)
+            os.remove(pathname)
             if display_info:
-                print u'File: %s exists. Overwrite.' % filename
+                print u'%s: %s exists. Overwrite.' % (path_type(pathname), pathname)
             return False
         else:
             if display_info:
-                print u'File: %s exists.' % filename
+                print u'%s: %s exists.' % (path_type(pathname), pathname)
             return True
     else:
         if display_info:
-            print u'File: %s does not exist.' % filename
+            print u'%s: %s does not exist.' % (path_type(pathname), pathname)
         return False
 
 
-def load_text(filename, display_info=True):
-    if exist_file(filename, display_info=display_info):
-        with open(filename, 'r') as f:
+def load_text(pathname, display_info=True):
+    if exist(pathname=pathname, display_info=display_info):
+        with open(pathname, 'r') as f:
             return [line.strip() for line in f.readlines()]
 
 
-def load_json(filename, display_info=True):
-    if exist_file(filename, display_info=display_info):
-        with open(filename, 'r') as f:
+def load_json(pathname, display_info=True):
+    if exist(pathname=pathname, display_info=display_info):
+        with open(pathname, 'r') as f:
             return load(f)
 
 
-def dump_json(data, filename, overwrite=False, display_info=True):
-    make_dirs_for_file(filename)
-    if not exist_file(filename, overwrite=overwrite, display_info=display_info):
+def dump_json(data, pathname, overwrite=False, display_info=True):
+    make_dirs_for_file(pathname)
+    if not exist(pathname=pathname, overwrite=overwrite, display_info=display_info):
         if display_info:
-            print 'Write to file: %s' % filename
-        with open(filename, 'w') as f:
+            print 'Write to file: %s' % pathname
+        with open(pathname, 'w') as f:
             dump(data, f)
 
 

@@ -15,6 +15,9 @@ Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature
 │   │       ├── <participant>-<session_id>-<seconds_before_start>.json
 │   │       └── ...
 │   ├── segmented/
+|   |   ├── incomplete/
+|   |   |   ├── <participant>.json
+│   |   |   └── ...
 │   │   ├── <participant>.json
 │   │   └── ...
 │   ├── preprocessed/
@@ -173,6 +176,7 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 Excerpt from `ppg/parameter.py`:
 
 ```python
+TOTAL_SESSION_NUM = 2
 REST_DURATION = 5 * 60
 BLOCK_DURATION = 2 * 60
 
@@ -196,19 +200,22 @@ ECG_HF_HRV_CUTOFF = [0.15, 0.5]
 
 ### Module: `ppg.common`
 ```python
-make_dirs_for_file(filename)
+path_type = path_type(pathname)
 ```
 ```python
-result = exist_file(filename, overwrite=False, display_info=True)
+make_dirs_for_file(pathname)
 ```
 ```python
-text_data = load_text(filename, display_info=True)
+result = exist_file(pathname, overwrite=False, display_info=True)
 ```
 ```python
-json_data = load_json(filename, display_info=True)
+text_data = load_text(pathname, display_info=True)
 ```
 ```python
-dump_json(data, filename, overwrite=False, display_info=True)
+json_data = load_json(pathname, display_info=True)
+```
+```python
+dump_json(data, pathname, overwrite=False, display_info=True)
 ```
 ```python
 datetime = parse_iso_time_string(timestamp)
