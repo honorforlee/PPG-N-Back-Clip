@@ -116,8 +116,8 @@ min	CH1	CH2	CH9
 ```
 
 ### Segmented Raw Data
-- **Location of complete data:** `data/segmented/`
-- **Location of incomplete data:** `data/segmented/incomplete/`
+- **Location (complete data):** `data/segmented/`
+- **Location (incomplete data):** `data/segmented/incomplete/`
 - **Filename format:** `<participant>.json`
 
 ###### Sample Data

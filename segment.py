@@ -200,7 +200,6 @@ for participant in output_data:
 for participant in output_data:
     output_filename = '%s.json' % participant
     if completeness[participant] and len(output_data[participant]) == TOTAL_SESSION_NUM:
-        output_pathname = os.path.join(segmented_data_dir, output_filename)
+        dump_json(data=output_data[participant], pathname=os.path.join(segmented_data_dir, output_filename), overwrite=True)
     else:
-        output_pathname = os.path.join(segmented_data_dir, 'incomplete', output_filename)
-    dump_json(data=output_data[participant], pathname=output_pathname, overwrite=True)
+        dump_json(data=output_data[participant], pathname=os.path.join(segmented_data_dir, 'incomplete', output_filename), overwrite=True)

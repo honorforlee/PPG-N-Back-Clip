@@ -183,3 +183,14 @@ def extract_hrv_power(rri, sample_rate):
         elif x[0] > ECG_HF_HRV_CUTOFF[1]:
             break
     return mf_hrv_power * f_step, hf_hrv_power * f_step
+
+
+def change_ratio(value, baseline):
+    return (value - baseline) / baseline
+
+
+def get_change_ratio(data, baseline):
+    if isinstance(baseline, list):
+        baseline = np.mean(baseline, axis=0)
+        return [change_ratio(value=value, baseline=baseline).tolist() for value in data]
+    return change_ratio(value=data, baseline=baseline)

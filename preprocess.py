@@ -50,5 +50,4 @@ if exist(pathname=segmented_data_dir):
                         block['ecg']['rri'] = None
                         block['ecg']['rri_interpolated'] = None
                     del block['ecg']['signal']
-            output_pathname = os.path.join(preprocessed_data_dir, filename_with_ext)
-            dump_json(data=json_data, pathname=output_pathname, overwrite=True)
+            dump_json(data=json_data, pathname=os.path.join(preprocessed_data_dir, filename_with_ext), overwrite=True)

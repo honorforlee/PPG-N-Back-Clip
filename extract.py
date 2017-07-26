@@ -79,5 +79,4 @@ if exist(pathname=preprocessed_data_dir):
                         block['ecg']['hf_hrv_power'] = None
                     del block['ecg']['rri']
                     del block['ecg']['rri_interpolated']
-            pathname = os.path.join(extracted_data_dir, filename_with_ext)
-            dump_json(data=json_data, pathname=pathname, overwrite=True)
+            dump_json(data=json_data, pathname=os.path.join(extracted_data_dir, filename_with_ext), overwrite=True)
