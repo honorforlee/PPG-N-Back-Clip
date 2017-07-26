@@ -84,7 +84,7 @@ pip install -r requirements.txt
           "response_time": 756,
           "is_target": false,
           "answer": false,
-          "correct": truw,
+          "correct": true,
           "timestamp": {
             "load": "2017-07-12T12:52:47.564Z",
             "response": "2017-07-12T12:52:48.320Z"
