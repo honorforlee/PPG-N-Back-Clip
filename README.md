@@ -17,6 +17,27 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Usage
+##### Raw Data Segmentation
+```sh
+python segment.py
+```
+
+##### Preprocessing
+```sh
+python preprocess.py
+```
+
+##### Feature Extraction
+```sh
+python extract.py
+```
+
+##### Classification
+```sh
+python classify.py
+```
+
 ## File Structure
 ```
 ├── data/
@@ -60,7 +81,7 @@ pip install -r requirements.txt
 └── .gitignore
 ```
 
-## Data Format
+## Data Definition
 ### Raw Data
 #### Meta Data
 - **Location:** `data/raw/meta/`
@@ -390,27 +411,6 @@ min	CH1	CH2	CH9
 |43|<code>\|s<sub>2</sub>\|</code>|2<sup>nd</sup> harmonic magnitude|
 |44|<code>f<sub>3</sub></code>|3<sup>rd</sup> harmonic frequency|
 |45|<code>\|s<sub>3</sub>\|</code>|3<sup>rd</sup> harmonic magnitude|
-
-## Procedures
-##### Raw Data Segmentation
-```sh
-python segment.py
-```
-
-##### Preprocessing
-```sh
-python preprocess.py
-```
-
-##### Feature Extraction
-```sh
-python extract.py
-```
-
-##### Classification
-```sh
-python classify.py
-```
 
 ## API Reference
 ### Module: `configure`
