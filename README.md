@@ -38,49 +38,6 @@ python extract.py
 python classify.py
 ```
 
-## File Structure
-```
-├── data/
-│   ├── raw/
-│   │   ├── meta/
-│   │   │   ├── <participant>-<session_id>.json
-│   │   │   └── ...
-│   │   ├── ppg/
-│   │   │   ├── <participant>-<session_id>-<year>_<month>_<day>_<hour>_<minute>_<second>.json
-│   │   │   └── ...
-│   │   └── biopac/
-│   │       ├── <participant>-<session_id>-<seconds_before_start>.json
-│   │       └── ...
-│   ├── segmented/
-|   |   ├── incomplete/
-|   |   |   ├── <participant>.json
-│   |   |   └── ...
-│   │   ├── <participant>.json
-│   │   └── ...
-│   ├── preprocessed/
-│   │   ├── <participant>.json
-│   │   └── ...
-│   └── extracted/
-│       ├── <participant>.json
-│       └── ...
-├── ppg/
-│   ├── __init__.py
-│   ├── parameter.py
-│   ├── signal.py
-│   ├── feature.py
-│   ├── learn.py
-│   └── utils.py
-├── configure.py
-├── segment.py
-├── preprocess.py
-├── extract.py
-├── classify.py
-├── requirements.txt
-├── README.md
-├── LICENSE
-└── .gitignore
-```
-
 ## Data Definition
 ### Raw Data
 #### Meta Data
@@ -561,4 +518,47 @@ plot(args, backend=None)
 ```
 ```python
 semilogy(args, backend=None)
+```
+
+## File Structure
+```
+├── data/
+│   ├── raw/
+│   │   ├── meta/
+│   │   │   ├── <participant>-<session_id>.json
+│   │   │   └── ...
+│   │   ├── ppg/
+│   │   │   ├── <participant>-<session_id>-<year>_<month>_<day>_<hour>_<minute>_<second>.json
+│   │   │   └── ...
+│   │   └── biopac/
+│   │       ├── <participant>-<session_id>-<seconds_before_start>.json
+│   │       └── ...
+│   ├── segmented/
+|   |   ├── incomplete/
+|   |   |   ├── <participant>.json
+│   |   |   └── ...
+│   │   ├── <participant>.json
+│   │   └── ...
+│   ├── preprocessed/
+│   │   ├── <participant>.json
+│   │   └── ...
+│   └── extracted/
+│       ├── <participant>.json
+│       └── ...
+├── ppg/
+│   ├── __init__.py
+│   ├── parameter.py
+│   ├── signal.py
+│   ├── feature.py
+│   ├── learn.py
+│   └── utils.py
+├── configure.py
+├── segment.py
+├── preprocess.py
+├── extract.py
+├── classify.py
+├── requirements.txt
+├── README.md
+├── LICENSE
+└── .gitignore
 ```
