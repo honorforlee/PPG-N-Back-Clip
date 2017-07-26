@@ -65,25 +65,269 @@ pip install -r requirements.txt
 - **Location:** `data/raw/meta/`
 - **Filename format:** `<participant>-<session_id>.json`
 
+##### Sample Data
+```js
+{
+  "rest_start_timestamp": "2017-07-12T12:47:34.844Z",
+  "blocks": [
+    {
+      "level": 2,
+      "level_alias": "2-Back",
+      "header": "The 2-Back Task",
+      "image_src": "\/images\/logo-2.png",
+      "image_alt": "2-Back Task Logo",
+      "stimuli": [
+        {
+          "stimulus": "H",
+          "load_time": 2000,
+          "unload_time": 2500,
+          "response_time": 756,
+          "is_target": false,
+          "answer": false,
+          "correct": truw,
+          "timestamp": {
+            "load": "2017-07-12T12:52:47.564Z",
+            "response": "2017-07-12T12:52:48.320Z"
+          }
+        },
+        ...
+      ],
+      "total_time": 122000,
+      "rsme": "108"
+    },
+    ...
+  ]
+}
+```
+
 #### PPG Data
 - **Location:** `data/raw/ppg/`
 - **Filename format:** `<participant>-<session_id>-<year>_<month>_<day>_<hour>_<minute>_<second>.txt`
+
+##### Sample Data
+```
+109
+110
+109
+109
+...
+```
 
 #### BIOPAC Data
 - **Location:** `data/raw/biopac/`
 - **Filename format:** `<participant>-<session_id>-<seconds_before_start>.txt`
 
+##### Sample Data
+```
+SampleData.acq
+1 msec/sample
+3 channels
+ECG - ECG100C
+mV
+PPG - PPG100C
+Volts
+Skin conductance - GSR100C
+microsiemens
+min	CH1	CH2	CH9
+	1161418	1161418	1161418
+0	-2.26685	-0.194092	3.43475
+1.66667E-05	-2.25769	-0.197449	3.44086
+3.33333E-05	-2.24915	-0.198975	3.4378
+...
+```
+
 ### Segmented Raw Data
-- **Location:** `data/segmented/`
+- **Location of complete data:** `data/segmented/`
+- **Location of incomplete data:** `data/segmented/incomplete/`
 - **Filename format:** `<participant>.json`
+
+#### Sample Data
+```js
+{
+  "1": {
+    "rest": {
+      "ppg": {
+        "sample_rate": 200,
+        "signal": [ ... ]
+      },
+      "ecg": {
+        "sample_rate": 500,
+        "signal": [ ... ]
+      },
+      "skin_conductance": {
+        "sample_rate": 500,
+        "signal": [ ... ]
+      }
+    },
+    "blocks": [
+      {
+        "level": 2,
+        "stimuli": [
+          {
+            "stimulus": "P",
+            "correct": true,
+            "is_target": false,
+            "answer": false,
+            "response_time": 1443
+          },
+          ...
+        ],
+        "rmse": 100,
+        "ppg": {
+          "smaple_rate": 200,
+          "signal": [ ... ]
+        },
+        "ecg": {
+          "smaple_rate": 500,
+          "signal": [ ... ]
+        },
+        "skin_conductance": {
+          "smaple_rate": 500,
+          "signal": [ ... ]
+        }
+      },
+      ...
+    ]
+  },
+  "2": { ... }
+}
+```
 
 ### Preprocessed Data
 - **Location:** `data/preprocessed/`
 - **Filename format:** `<participant>.json`
 
+#### Sample Data
+```js
+{
+  "1": {
+    "rest": {
+      "ppg": {
+        "sample_rate": 200,
+        "single_waveforms": [
+          [ ... ]
+          ...
+        ]
+      },
+      "ecg": {
+        "sample_rate": 500,
+        "rri": [ ... ],
+        "rri_interpolated": [ ... ]
+      },
+      "skin_conductance": {
+        "sample_rate": 500,
+        "signal": [ ... ]
+      }
+    },
+    "blocks": [
+      {
+        "level": 2,
+        "stimuli": [
+          {
+            "stimulus": "P",
+            "correct": true,
+            "is_target": false,
+            "answer": false,
+            "response_time": 1443
+          },
+          ...
+        ],
+        "rmse": 77,
+        "ppg": {
+          "smaple_rate": 200,
+          "single_waveforms": [
+            [ ... ],
+            ...
+          ]
+        },
+        "ecg": {
+          "smaple_rate": 500,
+          "rri": [ ... ],
+          "rri_interpolated": [ ... ]
+        },
+        "skin_conductance": {
+          "smaple_rate": 500,
+          "signal": [ ... ]
+        }
+      },
+      ...
+    ]
+  },
+  "2": { ... }
+}
+```
+
 ### Extracted Feature Data
 - **Location:** `data/extracted/`
 - **Filename format:** `<participant>.json`
+
+#### Sample Data
+```js
+{
+  "1": {
+    "rest": {
+      "ppg": {
+        "sample_rate": 200,
+        "ppg45": [
+            [ ... ],
+            ...
+        ],
+        "svri": [ ... ]
+      },
+      "skin_conductance": {
+        "sample_rate": 500,
+        "average_level": 1.104390167200594,
+        "minimum_level": 1.08337
+      },
+      "ecg": {
+        "sample_rate": 500,
+        "average_rri": 0.6311857142857142,
+        "rmssd": 0.08357704410996045,
+        "mf_hrv_power": 0.002080068310532877,
+        "hf_hrv_power": 0.002399795392215334
+      }
+    },
+    "blocks": [
+      {
+        "level": 2,
+        "stimuli": [
+          {
+            "stimulus": "P",
+            "correct": true,
+            "is_target": false,
+            "answer": false,
+            "response_time": 1443
+          },
+          ...
+        ],
+        "rmse": 50,
+        "ppg": {
+          "smaple_rate": 200,
+          "ppg45": [
+            [ ... ],
+            ...
+          ],
+          "svri": [ ... ]
+        },
+        "skin_conductance": {
+          "sample_rate": 500,
+          "average_level": 1.1748575268331,
+          "minimum_level": 1.14593
+        },
+        "ecg": {
+          "sample_rate": 500,
+          "average_rri": 0.5749863013698632,
+          "rmssd": 0.02207940216581962,
+          "mf_hrv_power": 9.279518361597799e-05,
+          "hf_hrv_power": 7.836547312796411e-05
+        }
+      },
+      ...
+    ]
+  },
+  "2": { ... }
+}
+```
 
 ## Sensors and Features
 |Sensor|Feature|Dimension|
@@ -210,9 +454,9 @@ extrema = find_extrema(signal)
 #### PPG Signal Smoothing
 ```python
 smoothed_ppg_signal = smooth_ppg_signal(
-    signal, 
+    signal,
     sample_rate=PPG_SAMPLE_RATE,
-    numtaps=PPG_FIR_FILTER_TAP_NUM, 
+    numtaps=PPG_FIR_FILTER_TAP_NUM,
     cutoff=PPG_FILTER_CUTOFF
 )
 ```
@@ -246,7 +490,7 @@ extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE)
 
 ##### Stress-Induced Vascular Response Index (sVRI)
 ```python
-average_svri = extract_average_svri(single_waveform)
+svri = extract_svri(single_waveform)
 ```
 
 #### Skin Conductance Features

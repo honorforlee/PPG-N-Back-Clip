@@ -9,7 +9,7 @@ import os
 import fnmatch
 from configure import BASE_DIR
 from ppg.utils import make_dirs_for_file, exist, load_json, dump_json
-from ppg.feature import extract_ppg45, extract_average_svri
+from ppg.feature import extract_ppg45, extract_svri
 from ppg.feature import extract_average_skin_conductance_level, extract_minimum_skin_conductance_level
 from ppg.feature import extract_average_rri, extract_rmssd, extract_hrv_power
 
@@ -26,10 +26,10 @@ if exist(pathname=preprocessed_data_dir):
             for session_id in json_data:
                 if json_data[session_id]['rest']['ppg']['single_waveforms'] is not None:
                     json_data[session_id]['rest']['ppg']['ppg45'] = [extract_ppg45(single_waveform=single_waveform, sample_rate=json_data[session_id]['rest']['ppg']['sample_rate']) for single_waveform in json_data[session_id]['rest']['ppg']['single_waveforms']]
-                    json_data[session_id]['rest']['ppg']['average_svri'] = [extract_average_svri(single_waveform=single_waveform) for single_waveform in json_data[session_id]['rest']['ppg']['single_waveforms']]
+                    json_data[session_id]['rest']['ppg']['svri'] = [extract_svri(single_waveform=single_waveform) for single_waveform in json_data[session_id]['rest']['ppg']['single_waveforms']]
                 else:
                     json_data[session_id]['rest']['ppg']['ppg45'] = None
-                    json_data[session_id]['rest']['ppg']['average_svri'] = None
+                    json_data[session_id]['rest']['ppg']['svri'] = None
                 del json_data[session_id]['rest']['ppg']['single_waveforms']
                 if json_data[session_id]['rest']['skin_conductance']['signal'] is not None:
                     json_data[session_id]['rest']['skin_conductance']['average_level'] = extract_average_skin_conductance_level(signal=json_data[session_id]['rest']['skin_conductance']['signal'])
@@ -54,10 +54,10 @@ if exist(pathname=preprocessed_data_dir):
                 for block in json_data[session_id]['blocks']:
                     if block['ppg']['single_waveforms'] is not None:
                         block['ppg']['ppg45'] = [extract_ppg45(single_waveform=single_waveform, sample_rate=block['ppg']['sample_rate']) for single_waveform in block['ppg']['single_waveforms']]
-                        block['ppg']['average_svri'] = [extract_average_svri(single_waveform=single_waveform) for single_waveform in block['ppg']['single_waveforms']]
+                        block['ppg']['svri'] = [extract_svri(single_waveform=single_waveform) for single_waveform in block['ppg']['single_waveforms']]
                     else:
                         block['ppg']['ppg45'] = None
-                        block['ppg']['average_svri'] = None
+                        block['ppg']['svri'] = None
                     del block['ppg']['single_waveforms']
                     if block['skin_conductance']['signal'] is not None:
                         block['skin_conductance']['average_level'] = extract_average_skin_conductance_level(signal=block['skin_conductance']['signal'])

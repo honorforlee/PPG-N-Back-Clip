@@ -148,7 +148,7 @@ def extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE):
     return features
 
 
-def extract_average_svri(single_waveform):
+def extract_svri(single_waveform):
     max_index = np.argmax(single_waveform)
     single_waveform_scaled = scale(single_waveform)
     return np.mean(single_waveform_scaled[max_index:]) / np.mean(single_waveform_scaled[:max_index])
