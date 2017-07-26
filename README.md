@@ -163,6 +163,9 @@ python extract.py
 ```
 
 ### Classification
+```sh
+python classify.py
+```
 
 ## API Reference
 ### Module: `configure`
@@ -271,6 +274,10 @@ rmssd = extract_rmssd(rri)
 ##### Middle/High-Frequency Heart Rate Variability (MF/HF-HRV)
 ```python
 mf_hrv_power, hf_hrv_power = extract_hrv_power(rri, sample_rate)
+```
+
+### Module: `ppg.learn`
+```python
 ```
 
 ### Module: `ppg.utils`
