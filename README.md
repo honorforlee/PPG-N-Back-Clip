@@ -29,14 +29,14 @@ Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature
 ├── ppg/
 │   ├── __init__.py
 │   ├── parameter.py
-│   ├── common.py
 │   ├── signal.py
-│   └── feature.py
+│   ├── feature.py
+│   ├── learn.py
+│   └── utils.py
 ├── configure.py
 ├── segment.py
 ├── preprocess.py
 ├── extract.py
-├── learn.py
 ├── classify.py
 ├── requirements.txt
 ├── README.md
@@ -198,44 +198,6 @@ ECG_MF_HRV_CUTOFF = [0.07, 0.15]
 ECG_HF_HRV_CUTOFF = [0.15, 0.5]
 ```
 
-### Module: `ppg.common`
-```python
-path_type = path_type(pathname)
-```
-```python
-make_dirs_for_file(pathname)
-```
-```python
-result = exist_file(pathname, overwrite=False, display_info=True)
-```
-```python
-text_data = load_text(pathname, display_info=True)
-```
-```python
-json_data = load_json(pathname, display_info=True)
-```
-```python
-dump_json(data, pathname, overwrite=False, display_info=True)
-```
-```python
-datetime = parse_iso_time_string(timestamp)
-```
-```python
-result = next_pow2(x)
-```
-```python
-scaled_data = scale(data)
-```
-```python
-set_matplotlib_backend(backend=None)
-```
-```python
-plot(args, backend=None)
-```
-```python
-semilogy(args, backend=None)
-```
-
 ### Module: `ppg.signal`
 #### Peak Finding
 ```python
@@ -309,4 +271,42 @@ rmssd = extract_rmssd(rri)
 ##### Middle/High-Frequency Heart Rate Variability (MF/HF-HRV)
 ```python
 mf_hrv_power, hf_hrv_power = extract_hrv_power(rri, sample_rate)
+```
+
+### Module: `ppg.utils`
+```python
+path_type = path_type(pathname)
+```
+```python
+make_dirs_for_file(pathname)
+```
+```python
+result = exist_file(pathname, overwrite=False, display_info=True)
+```
+```python
+text_data = load_text(pathname, display_info=True)
+```
+```python
+json_data = load_json(pathname, display_info=True)
+```
+```python
+dump_json(data, pathname, overwrite=False, display_info=True)
+```
+```python
+datetime = parse_iso_time_string(timestamp)
+```
+```python
+result = next_pow2(x)
+```
+```python
+scaled_data = scale(data)
+```
+```python
+set_matplotlib_backend(backend=None)
+```
+```python
+plot(args, backend=None)
+```
+```python
+semilogy(args, backend=None)
 ```

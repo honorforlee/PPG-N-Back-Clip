@@ -26,9 +26,9 @@ def make_dirs_for_file(pathname):
 def exist(pathname, overwrite=False, display_info=True):
     if os.path.exists(pathname):
         if overwrite:
-            os.remove(pathname)
             if display_info:
                 print u'%s: %s exists. Overwrite.' % (path_type(pathname), pathname)
+            os.remove(pathname)
             return False
         else:
             if display_info:

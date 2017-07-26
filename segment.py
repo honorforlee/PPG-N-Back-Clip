@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 from configure import BASE_DIR
 from ppg.parameter import TOTAL_SESSION_NUM, REST_DURATION, BLOCK_DURATION, PPG_SAMPLE_RATE
 from ppg.parameter import BIOPAC_HEADER_LINES, BIOPAC_MSEC_PER_SAMPLE_LINE_NUM, BIOPAC_ECG_CHANNEL, BIOPAC_SKIN_CONDUCTANCE_CHANNEL
-from ppg.common import make_dirs_for_file, exist, load_text, load_json, dump_json, parse_iso_time_string
+from ppg.utils import make_dirs_for_file, exist, load_text, load_json, dump_json, parse_iso_time_string
 
 
 raw_meta_data_dir = os.path.join(BASE_DIR, 'data', 'raw', 'meta')
