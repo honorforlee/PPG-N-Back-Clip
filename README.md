@@ -490,9 +490,6 @@ mf_hrv_power, hf_hrv_power = extract_hrv_power(rri, sample_rate)
 
 ### Module: `ppg.utils`
 ```python
-path_type = path_type(pathname)
-```
-```python
 make_dirs_for_file(pathname)
 ```
 ```python
