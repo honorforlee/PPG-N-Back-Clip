@@ -9,6 +9,8 @@ Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature
 - [Virtualenv](https://virtualenv.pypa.io/en/stable/)
 
 #### Installing with Virtualenv
+On Unix, Linux, BSD, macOS, and Cygwin:
+
 ```sh
 git clone https://github.com/iROCKBUNNY/PPG.git
 cd PPG
