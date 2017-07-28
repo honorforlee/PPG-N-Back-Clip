@@ -376,11 +376,11 @@ min	CH1	CH2	CH9
 |45|<code>\|s<sub>3</sub>\|</code>|3<sup>rd</sup> harmonic magnitude|
 
 ## API Reference
-### Module: `configure`
-Excerpt from `configure.py`:
+### Module: `ppg`
+Excerpt from `ppg/__init__.py`:
 
 ```python
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 ```
 
 ### Module: `ppg.parameter`
@@ -560,7 +560,6 @@ semilogy(args, backend=None)
 │   ├── feature.py
 │   ├── learn.py
 │   └── utils.py
-├── configure.py
 ├── segment.py
 ├── preprocess.py
 ├── extract.py

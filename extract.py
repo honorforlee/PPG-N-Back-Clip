@@ -7,7 +7,7 @@ sys.setdefaultencoding('utf-8');
 
 import os
 import fnmatch
-from configure import BASE_DIR
+from ppg import BASE_DIR
 from ppg.utils import make_dirs_for_file, exist, load_json, dump_json
 from ppg.feature import extract_ppg45, extract_svri
 from ppg.feature import extract_average_skin_conductance_level, extract_minimum_skin_conductance_level
