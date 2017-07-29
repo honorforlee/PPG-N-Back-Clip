@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from sklearn.model_selection import GridSearchCV
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.naive_bayes import GaussianNB
@@ -42,13 +43,17 @@ def get_feature_set(data, task_levels, feature_types):
 
 
 def logistic_regression_classifier(features, labels):
-    classifier = LogisticRegression()
+    classifier = LogisticRegression(random_state=1, n_jobs=-1)
     classifier.fit(features, labels)
     return classifier
 
 
 def support_vector_classifier(features, labels):
-    classifier = SVC()
+    parameters = {
+        'C': range(1, 101, 10),
+        'kernel': ('linear', 'poly', 'rbf', 'sigmoid'),
+    }
+    classifier = GridSearchCV(SVC(random_state=1), parameters, n_jobs=-1)
     classifier.fit(features, labels)
     return classifier
 
@@ -60,44 +65,66 @@ def gaussian_naive_bayes_classifier(features, labels):
 
 
 def decision_tree_classifier(features, labels):
-    classifier = DecisionTreeClassifier()
+    parameters = {
+        'max_depth': [None] + range(1, 11, 1),
+    }
+    classifier = GridSearchCV(DecisionTreeClassifier(random_state=1), parameters, n_jobs=-1)
     classifier.fit(features, labels)
     return classifier
 
 
 def random_forest_classifier(features, labels):
-    classifier = RandomForestClassifier()
+    parameters = {
+        'n_estimators': range(10, 201, 10),
+        'max_depth': [None] + range(1, 11, 1),
+    }
+    classifier = GridSearchCV(RandomForestClassifier(random_state=1), parameters, n_jobs=-1)
     classifier.fit(features, labels)
     return classifier
 
 
 def adaboost_classifier(features, labels):
-    classifier = AdaBoostClassifier()
+    parameters = {
+        'n_estimators': range(50, 201, 10),
+        'learning_rate': [float(x) / 10.0 for x in range(1, 11, 1)],
+    }
+    classifier = GridSearchCV(AdaBoostClassifier(random_state=1), parameters, n_jobs=-1)
     classifier.fit(features, labels)
     return classifier
 
 
 def gradient_boosting_classifier(features, labels):
-    classifier = GradientBoostingClassifier()
+    parameters = {
+        'learning_rate': [float(x) / 10.0 for x in range(1, 11, 1)],
+        'n_estimators': range(50, 201, 10),
+        'max_depth': range(1, 11, 1),
+    }
+    classifier = GridSearchCV(GradientBoostingClassifier(random_state=1), parameters, n_jobs=-1)
     classifier.fit(features, labels)
     return classifier
 
 
 def voting_classifier(features, labels):
-    classifier1 = LogisticRegression()
-    classifier2 = SVC(probability=True)
-    classifier3 = GaussianNB()
-    classifier4 = DecisionTreeClassifier()
-    classifier5 = RandomForestClassifier()
-    classifier6 = AdaBoostClassifier()
-    classifier7 = GradientBoostingClassifier()
-    classifier = VotingClassifier(estimators=[
-        ('lr', classifier1),
-        ('svc', classifier2),
-        ('gnb', classifier3),
-        ('dt', classifier4),
-        ('rf', classifier5),
-        ('ab', classifier6),
-        ('gb', classifier7),
-    ], voting='soft').fit(features, labels)
+    parameters = {
+        'svc__C': range(1, 101, 10),
+        'svc__kernel': ('linear', 'poly', 'rbf', 'sigmoid'),
+        'rf__n_estimators': range(10, 201, 10),
+        'rf__max_depth': [None] + range(1, 11, 1),
+        'ab__n_estimators': range(50, 201, 10),
+        'ab__learning_rate': [float(x) / 10.0 for x in range(1, 11, 1)],
+        'gb__learning_rate': [float(x) / 10.0 for x in range(1, 11, 1)],
+        'gb__n_estimators': range(50, 201, 10),
+        'gb__max_depth': range(1, 11, 1),
+        'voting': ['hard', 'soft'],
+    }
+    classifier = GridSearchCV(VotingClassifier(estimators=[
+        ('lr', LogisticRegression(random_state=1)),
+        ('svc', SVC(probability=True, random_state=1)),
+        ('gnb', GaussianNB()),
+        ('dt', DecisionTreeClassifier(random_state=1)),
+        ('rf', RandomForestClassifier(random_state=1)),
+        ('ab', AdaBoostClassifier(random_state=1)),
+        ('gb', GradientBoostingClassifier(random_state=1)),
+    ]), parameters, n_jobs=-1)
+    classifier.fit(features, labels)
     return classifier
