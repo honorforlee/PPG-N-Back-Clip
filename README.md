@@ -53,32 +53,32 @@ python classify.py
 ###### Sample Data
 ```js
 {
-  "rest_start_timestamp": "2017-07-12T12:47:34.844Z",
+  "rest_start_timestamp": <timestamp>,
   "blocks": [
     {
-      "level": 2,
-      "level_alias": "2-Back",
-      "header": "The 2-Back Task",
-      "image_src": "\/images\/logo-2.png",
-      "image_alt": "2-Back Task Logo",
+      "level": <level>,
+      "level_alias": <level_alias>,
+      "header": <header>,
+      "image_src": <image_src>,
+      "image_alt": <image_alt>,
       "stimuli": [
         {
-          "stimulus": "H",
-          "load_time": 2000,
-          "unload_time": 2500,
-          "response_time": 756,
-          "is_target": false,
-          "answer": false,
-          "correct": true,
+          "stimulus": <stimulus>,
+          "load_time": <value>,
+          "unload_time": <value>,
+          "response_time": <value>,
+          "is_target": <bool>,
+          "answer": <bool>,
+          "correct": <bool>,
           "timestamp": {
-            "load": "2017-07-12T12:52:47.564Z",
-            "response": "2017-07-12T12:52:48.320Z"
+            "load": <timestamp>,
+            "response": <timestamp>
           }
         },
         ...
       ],
-      "total_time": 122000,
-      "rsme": "108"
+      "total_time": <value>,
+      "rsme": <rsme>
     },
     ...
   ]
@@ -132,42 +132,42 @@ min	CH1	CH2	CH9
   "1": {
     "rest": {
       "ppg": {
-        "sample_rate": 200,
+        "sample_rate": <value>,
         "signal": [ ... ]
       },
       "ecg": {
-        "sample_rate": 500,
+        "sample_rate": <value>,
         "signal": [ ... ]
       },
       "skin_conductance": {
-        "sample_rate": 500,
+        "sample_rate": <value>,
         "signal": [ ... ]
       }
     },
     "blocks": [
       {
-        "level": 2,
+        "level": <level>,
         "stimuli": [
           {
-            "stimulus": "P",
-            "correct": true,
-            "is_target": false,
-            "answer": false,
-            "response_time": 1443
+            "stimulus": <stimulus>,
+            "correct": <bool>,
+            "is_target": <bool>,
+            "answer": <bool>,
+            "response_time": <value>
           },
           ...
         ],
-        "rmse": 100,
+        "rmse": <rmse>,
         "ppg": {
-          "smaple_rate": 200,
+          "smaple_rate": <value>,
           "signal": [ ... ]
         },
         "ecg": {
-          "smaple_rate": 500,
+          "smaple_rate": <value>,
           "signal": [ ... ]
         },
         "skin_conductance": {
-          "smaple_rate": 500,
+          "smaple_rate": <value>,
           "signal": [ ... ]
         }
       },
@@ -188,50 +188,50 @@ min	CH1	CH2	CH9
   "1": {
     "rest": {
       "ppg": {
-        "sample_rate": 200,
+        "sample_rate": <value>,
         "single_waveforms": [
           [ ... ]
           ...
         ]
       },
       "ecg": {
-        "sample_rate": 500,
+        "sample_rate": <value>,
         "rri": [ ... ],
         "rri_interpolated": [ ... ]
       },
       "skin_conductance": {
-        "sample_rate": 500,
+        "sample_rate": <value>,
         "signal": [ ... ]
       }
     },
     "blocks": [
       {
-        "level": 2,
+        "level": <level>,
         "stimuli": [
           {
-            "stimulus": "P",
-            "correct": true,
-            "is_target": false,
-            "answer": false,
-            "response_time": 1443
+            "stimulus": <stimulus>,
+            "correct": <bool>,
+            "is_target": <bool>,
+            "answer": <bool>,
+            "response_time": <value>
           },
           ...
         ],
-        "rmse": 77,
+        "rmse": <rmse>,
         "ppg": {
-          "smaple_rate": 200,
+          "smaple_rate": <value>,
           "single_waveforms": [
             [ ... ],
             ...
           ]
         },
         "ecg": {
-          "smaple_rate": 500,
+          "smaple_rate": <value>,
           "rri": [ ... ],
           "rri_interpolated": [ ... ]
         },
         "skin_conductance": {
-          "smaple_rate": 500,
+          "smaple_rate": <value>,
           "signal": [ ... ]
         }
       },
@@ -252,7 +252,7 @@ min	CH1	CH2	CH9
   "1": {
     "rest": {
       "ppg": {
-        "sample_rate": 200,
+        "sample_rate": <value>,
         "ppg45": [
             [ ... ],
             ...
@@ -260,34 +260,34 @@ min	CH1	CH2	CH9
         "svri": [ ... ]
       },
       "skin_conductance": {
-        "sample_rate": 500,
-        "average_level": 1.104390167200594,
-        "minimum_level": 1.08337
+        "sample_rate": <value>,
+        "average_level": <value>,
+        "minimum_level": <value>
       },
       "ecg": {
-        "sample_rate": 500,
-        "average_rri": 0.6311857142857142,
-        "rmssd": 0.08357704410996045,
-        "mf_hrv_power": 0.002080068310532877,
-        "hf_hrv_power": 0.002399795392215334
+        "sample_rate": <value>,
+        "average_rri": <value>,
+        "rmssd": <value>,
+        "mf_hrv_power": <value>,
+        "hf_hrv_power": <value>
       }
     },
     "blocks": [
       {
-        "level": 2,
+        "level": <level>,
         "stimuli": [
           {
-            "stimulus": "P",
-            "correct": true,
-            "is_target": false,
-            "answer": false,
-            "response_time": 1443
+            "stimulus": <stimulus>,
+            "correct": <bool>,
+            "is_target": <bool>,
+            "answer": <bool>,
+            "response_time": <value>
           },
           ...
         ],
-        "rmse": 50,
+        "rmse": <value>,
         "ppg": {
-          "smaple_rate": 200,
+          "smaple_rate": <value>,
           "ppg45": [
             [ ... ],
             ...
@@ -295,22 +295,64 @@ min	CH1	CH2	CH9
           "svri": [ ... ]
         },
         "skin_conductance": {
-          "sample_rate": 500,
-          "average_level": 1.1748575268331,
-          "minimum_level": 1.14593
+          "sample_rate": <value>,
+          "average_level": <value>,
+          "minimum_level": <value>
         },
         "ecg": {
-          "sample_rate": 500,
-          "average_rri": 0.5749863013698632,
-          "rmssd": 0.02207940216581962,
-          "mf_hrv_power": 9.279518361597799e-05,
-          "hf_hrv_power": 7.836547312796411e-05
+          "sample_rate": <value>,
+          "average_rri": <value>,
+          "rmssd": <value>,
+          "mf_hrv_power": <value>,
+          "hf_hrv_power": <value>
         }
       },
       ...
     ]
   },
   "2": { ... }
+}
+```
+
+### Splited Feature Data
+- **Location:** `data/splited/`
+- **Filename format:** `<participant>.json`
+
+###### Sample Data
+```js
+{
+  "train": {
+    "0": [
+      {
+        "ppg45": [
+          [ ... ],
+          ...
+        ],
+        "ppg45_cr": [
+          [ ... ],
+          ,,,
+        ],
+        "svri": [ ... ],
+        "svri_cr": [ ... ],
+        "average_skin_conductance_level": <value>,
+        "average_skin_conductance_level_cr": <value>,
+        "minimum_skin_conductance_level": <value>,
+        "minimum_skin_conductance_level_cr": <value>,
+        "average_rri": <value>,
+        "average_rri_cr": <value>,
+        "rmssd": <value>,
+        "rmssd_cr": <value>,
+        "mf_hrv_power": <value>,
+        "mf_hrv_power_cr": <value>,
+        "hf_hrv_power": <value>,
+        "hf_hrv_power_cr": <value>
+      },
+      ...
+    ],
+    "1": [ ... ],
+    "2": [ ... ]
+  },
+  "test": { ... }
 }
 ```
 
