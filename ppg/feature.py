@@ -4,10 +4,11 @@ import numpy as np
 from scipy.signal import argrelmax, argrelmin, welch
 from parameter import PPG_SAMPLE_RATE
 from parameter import ECG_MF_HRV_CUTOFF, ECG_HF_HRV_CUTOFF
-from utils import scale, next_pow2
 
 
 def extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE):
+    def __next_pow2(x):
+        return 1<<(x-1).bit_length()
     features = []
     maxima_index = argrelmax(np.array(single_waveform))[0]
     minima_index = argrelmin(np.array(single_waveform))[0]
@@ -17,7 +18,7 @@ def extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE):
     derivative_2 = np.diff(single_waveform, n=2) * float(sample_rate)
     derivative_2_maxima_index = argrelmax(np.array(derivative_2))[0]
     derivative_2_minima_index = argrelmin(np.array(derivative_2))[0]
-    sp_mag = np.abs(np.fft.fft(single_waveform, n=next_pow2(len(single_waveform))*16))
+    sp_mag = np.abs(np.fft.fft(single_waveform, n=__next_pow2(len(single_waveform))*16))
     freqs = np.fft.fftfreq(len(sp_mag))
     sp_mag_maxima_index = argrelmax(sp_mag)[0]
     # x
@@ -149,8 +150,12 @@ def extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE):
 
 
 def extract_svri(single_waveform):
+    def __scale(data):
+        data_max = max(data)
+        data_min = min(data)
+        return [(x - data_min) / (data_max - data_min) for x in data]
     max_index = np.argmax(single_waveform)
-    single_waveform_scaled = scale(single_waveform)
+    single_waveform_scaled = __scale(single_waveform)
     return np.mean(single_waveform_scaled[max_index:]) / np.mean(single_waveform_scaled[:max_index])
 
 

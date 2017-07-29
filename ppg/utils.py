@@ -65,16 +65,6 @@ def parse_iso_time_string(timestamp):
     return dateutil.parser.parse(timestamp).astimezone(dateutil.tz.tzlocal()).replace(tzinfo=None)
 
 
-def next_pow2(x):
-    return 1<<(x-1).bit_length()
-
-
-def scale(data):
-    data_max = max(data)
-    data_min = min(data)
-    return [(x - data_min) / (data_max - data_min) for x in data]
-
-
 def get_change_ratio(data, baseline):
     def __get_change_ratio(value, baseline):
         return (value - baseline) / baseline
@@ -83,26 +73,6 @@ def get_change_ratio(data, baseline):
         baseline = np.mean(baseline, axis=0)
         return [__get_change_ratio(value=value, baseline=baseline).tolist() for value in data]
     return __get_change_ratio(value=data, baseline=baseline)
-
-
-def flatten(blocks, feature_types):
-    flattened_data = []
-    sample_num = 0
-    for block in blocks:
-        block_sample_num = len(block['ppg45'])
-        flattened_block = [[] for x in range(block_sample_num)]
-        for feature_type in feature_types:
-            for sample_index in range(block_sample_num):
-                if isinstance(block[feature_type], list):
-                    if isinstance(block[feature_type][0], list):
-                        flattened_block[sample_index].extend(block[feature_type][sample_index])
-                    else:
-                        flattened_block[sample_index].append(block[feature_type][sample_index])
-                else:
-                    flattened_block[sample_index].append(block[feature_type])
-        flattened_data.extend(flattened_block)
-        sample_num += block_sample_num
-    return flattened_data, sample_num
 
 
 def set_matplotlib_backend(backend=None):

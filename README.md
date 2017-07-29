@@ -530,6 +530,7 @@ mf_hrv_power, hf_hrv_power = extract_hrv_power(rri, sample_rate)
 
 ### Module: `ppg.learn`
 ```python
+train_features, train_labels, test_features, test_labels = get_feature_set(data, task_levels, feature_types)
 ```
 
 ### Module: `ppg.utils`
@@ -552,16 +553,7 @@ dump_json(data, pathname, overwrite=False, display_info=True)
 datetime = parse_iso_time_string(timestamp)
 ```
 ```python
-next_pow2 = next_pow2(x)
-```
-```python
-scaled_data = scale(data)
-```
-```python
 change_ratio = get_change_ratio(data, baseline)
-```
-```python
-flattened_data, sample_num = flatten(blocks, feature_types)
 ```
 ```python
 set_matplotlib_backend(backend=None)
