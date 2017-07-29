@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from sklearn import svm
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.naive_bayes import GaussianNB
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier, VotingClassifier
 
 
 def get_feature_set(data, task_levels, feature_types):
@@ -37,7 +41,63 @@ def get_feature_set(data, task_levels, feature_types):
     return train_features, train_labels, test_features, test_labels
 
 
-def svm_classifier(train_features, train_labels):
-    classifier = svm.SVC()
-    classifier.fit(train_features, train_labels)
+def logistic_regression_classifier(features, labels):
+    classifier = LogisticRegression()
+    classifier.fit(features, labels)
+    return classifier
+
+
+def support_vector_classifier(features, labels):
+    classifier = SVC()
+    classifier.fit(features, labels)
+    return classifier
+
+
+def gaussian_naive_bayes_classifier(features, labels):
+    classifier = GaussianNB()
+    classifier.fit(features, labels)
+    return classifier
+
+
+def decision_tree_classifier(features, labels):
+    classifier = DecisionTreeClassifier()
+    classifier.fit(features, labels)
+    return classifier
+
+
+def random_forest_classifier(features, labels):
+    classifier = RandomForestClassifier()
+    classifier.fit(features, labels)
+    return classifier
+
+
+def adaboost_classifier(features, labels):
+    classifier = AdaBoostClassifier()
+    classifier.fit(features, labels)
+    return classifier
+
+
+def gradient_boosting_classifier(features, labels):
+    classifier = GradientBoostingClassifier()
+    classifier.fit(features, labels)
+    return classifier
+
+
+def voting_classifier(features, labels):
+    classifier1 = LogisticRegression()
+    classifier2 = SVC(probability=True)
+    classifier3 = GaussianNB()
+    classifier4 = DecisionTreeClassifier()
+    classifier5 = RandomForestClassifier()
+    classifier6 = AdaBoostClassifier()
+    classifier7 = GradientBoostingClassifier()
+    classifier = VotingClassifier(estimators=[
+        ('lr', classifier1),
+        ('svc', classifier2),
+        ('gnb', classifier3),
+        ('dt', classifier4),
+        ('rf', classifier5),
+        ('ab', classifier6),
+        ('gb', classifier7),
+    ], voting='soft').fit(features, labels)
     return classifier
