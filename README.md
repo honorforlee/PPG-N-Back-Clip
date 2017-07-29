@@ -19,6 +19,13 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Quick Start
+On Unix, Linux, BSD, macOS, and Cygwin:
+
+```sh
+./scripts/process_data.sh
+```
+
 ## Usage
 ##### Raw data segmentation
 ```sh
@@ -597,6 +604,8 @@ semilogy(args, backend=None)
 │   ├── feature.py
 │   ├── learn.py
 │   └── utils.py
+├── scripts/
+│   └── process_data.sh
 ├── segment.py
 ├── preprocess.py
 ├── extract.py
