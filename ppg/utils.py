@@ -85,6 +85,26 @@ def get_change_ratio(data, baseline):
     return __get_change_ratio(value=data, baseline=baseline)
 
 
+def flatten(blocks, feature_types):
+    flattened_data = []
+    sample_num = 0
+    for block in blocks:
+        block_sample_num = len(block['ppg45'])
+        flattened_block = [[] for x in range(block_sample_num)]
+        for feature_type in feature_types:
+            for sample_index in range(block_sample_num):
+                if isinstance(block[feature_type], list):
+                    if isinstance(block[feature_type][0], list):
+                        flattened_block[sample_index].extend(block[feature_type][sample_index])
+                    else:
+                        flattened_block[sample_index].append(block[feature_type][sample_index])
+                else:
+                    flattened_block[sample_index].append(block[feature_type])
+        flattened_data.extend(flattened_block)
+        sample_num += block_sample_num
+    return flattened_data, sample_num
+
+
 def set_matplotlib_backend(backend=None):
     import matplotlib
     if matplotlib.get_backend() == 'MacOSX':

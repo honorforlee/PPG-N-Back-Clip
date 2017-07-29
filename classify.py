@@ -8,6 +8,7 @@ sys.setdefaultencoding('utf-8');
 import os
 import fnmatch
 from ppg import BASE_DIR
+from ppg.learn import run_svm
 from ppg.utils import make_dirs_for_file, exist, load_json, dump_json
 
 
@@ -19,4 +20,5 @@ if exist(pathname=splited_data_dir):
         pathname = os.path.join(splited_data_dir, filename_with_ext)
         json_data = load_json(pathname=pathname)
         if json_data is not None:
-            pass
+            score = run_svm(data=json_data, task_levels=['0', '2'], feature_types=['ppg45_cr'])
+            print score

@@ -561,6 +561,9 @@ scaled_data = scale(data)
 change_ratio = get_change_ratio(data, baseline)
 ```
 ```python
+flattened_data, sample_num = flatten(blocks, feature_types)
+```
+```python
 set_matplotlib_backend(backend=None)
 ```
 ```python
