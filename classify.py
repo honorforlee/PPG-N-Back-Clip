@@ -31,10 +31,10 @@ if exist(pathname=splited_data_dir):
             # score = support_vector_classifier(features=train_features, labels=train_labels).score(test_features, test_labels)
             # score = gaussian_naive_bayes_classifier(features=train_features, labels=train_labels).score(test_features, test_labels)
             # score = decision_tree_classifier(features=train_features, labels=train_labels).score(test_features, test_labels)
-            score = random_forest_classifier(features=train_features, labels=train_labels).score(test_features, test_labels)
+            # score = random_forest_classifier(features=train_features, labels=train_labels).score(test_features, test_labels)
             # score = adaboost_classifier(features=train_features, labels=train_labels).score(test_features, test_labels)
             # score = gradient_boosting_classifier(features=train_features, labels=train_labels).score(test_features, test_labels)
-            # score = voting_classifier(features=train_features, labels=train_labels).score(test_features, test_labels)
+            score = voting_classifier(features=train_features, labels=train_labels).score(test_features, test_labels)
             scores.append(score)
             print score
     print 'mean score:', sum(scores) / len(scores)

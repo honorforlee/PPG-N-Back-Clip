@@ -536,8 +536,50 @@ mf_hrv_power, hf_hrv_power = extract_hrv_power(rri, sample_rate)
 ```
 
 ### Module: `ppg.learn`
+##### Get Feature Set
 ```python
 train_features, train_labels, test_features, test_labels = get_feature_set(data, task_levels, feature_types)
+```
+
+#### Classifiers
+##### Logistic Regression Classifier
+```python
+classifier = logistic_regression_classifier(features, labels)
+```
+
+##### Support Vector Classifier
+```python
+classifier = support_vector_classifier(features, labels)
+```
+
+##### Gaussian Naïve Bayes Classifier
+```python
+classifier = gaussian_naive_bayes_classifier(features, labels)
+```
+
+##### Decision Tree Classifier
+```python
+classifier = decision_tree_classifier(features, labels)
+```
+
+##### Random Forest Classifier
+```python
+classifier = random_forest_classifier(features, labels)
+```
+
+##### AdaBoost Classifier
+```python
+classifier = adaboost_classifier(features, labels)
+```
+
+##### Gradient Boosting Classifier
+```python
+classifier = gradient_boosting_classifier(features, labels)
+```
+
+##### Voting Classifier
+```python
+classifier = voting_classifier(features, labels)
 ```
 
 ### Module: `ppg.utils`
