@@ -1,12 +1,19 @@
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)][repository]
+[![Python](https://img.shields.io/badge/Python-2.7-blue.svg)][python]
+[![License](https://img.shields.io/github/license/iROCKBUNNY/PPG.svg)][license]
+[![Watchers](https://img.shields.io/github/watchers/iROCKBUNNY/PPG.svg?style=social&label=Watch)][watch]
+[![Stargazers](https://img.shields.io/github/stars/iROCKBUNNY/PPG.svg?style=social&label=Star)][star]
+[![Forks](https://img.shields.io/github/forks/iROCKBUNNY/PPG.svg?style=social&label=Fork)][fork]
+
 # PPG
 Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature Fusion Model
 
 ## Installation
 ### Requirements
-- [macOS](https://www.apple.com/macos/) (Recommended)
-- [Python 2.7](https://docs.python.org/2/)
-- [Pip](https://pypi.python.org/pypi/pip)
-- [Virtualenv](https://virtualenv.pypa.io/en/stable/)
+- [macOS][macos] (Recommended)
+- [Python 2.7][python]
+- [Pip][pip]
+- [Virtualenv][virtualenv]
 
 ### Installing with Virtualenv
 On Unix, Linux, BSD, macOS, and Cygwin:
@@ -668,3 +675,17 @@ semilogy(args, backend=None)
 ├── LICENSE
 └── .gitignore
 ```
+
+## License
+[MIT License][license]
+
+[repository]: https://github.com/iROCKBUNNY/PPG "iROCKBUNNY/PPG"
+[license]: https://github.com/iROCKBUNNY/PPG/LICENSE "License"
+[watch]: https://github.com/iROCKBUNNY/PPG/watchers "Watchers"
+[star]: https://github.com/iROCKBUNNY/PPG/stargazers "Stargazers"
+[fork]: https://github.com/iROCKBUNNY/PPG/network "Forks"
+
+[macos]: https://www.apple.com/macos/ "macOS"
+[python]: https://docs.python.org/2/ "Python 2.7"
+[pip]: https://pypi.python.org/pypi/pip "Pip"
+[virtualenv]: https://virtualenv.pypa.io/en/stable/ "Virtualenv"
