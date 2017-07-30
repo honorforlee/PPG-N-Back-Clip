@@ -53,7 +53,7 @@ def support_vector_classifier(features, labels):
         'C': range(1, 101, 10),
         'kernel': ('linear', 'poly', 'rbf', 'sigmoid'),
     }
-    classifier = GridSearchCV(SVC(random_state=1), parameters, n_jobs=-1)
+    classifier = GridSearchCV(SVC(random_state=1, probability=True), parameters, n_jobs=-1)
     classifier.fit(features, labels)
     return classifier
 
@@ -104,27 +104,10 @@ def gradient_boosting_classifier(features, labels):
     return classifier
 
 
-def voting_classifier(features, labels):
+def voting_classifier(estimators, features, labels):
     parameters = {
-        'svc__C': range(1, 101, 10),
-        'svc__kernel': ('linear', 'poly', 'rbf', 'sigmoid'),
-        'rf__n_estimators': range(10, 201, 10),
-        'rf__max_depth': [None] + range(1, 11, 1),
-        'ab__n_estimators': range(50, 201, 10),
-        'ab__learning_rate': [float(x) / 10.0 for x in range(1, 11, 1)],
-        'gb__learning_rate': [float(x) / 10.0 for x in range(1, 11, 1)],
-        'gb__n_estimators': range(50, 201, 10),
-        'gb__max_depth': range(1, 11, 1),
-        'voting': ['hard', 'soft'],
+        'voting': ['soft', 'hard'],
     }
-    classifier = GridSearchCV(VotingClassifier(estimators=[
-        ('lr', LogisticRegression(random_state=1)),
-        ('svc', SVC(probability=True, random_state=1)),
-        ('gnb', GaussianNB()),
-        ('dt', DecisionTreeClassifier(random_state=1)),
-        ('rf', RandomForestClassifier(random_state=1)),
-        ('ab', AdaBoostClassifier(random_state=1)),
-        ('gb', GradientBoostingClassifier(random_state=1)),
-    ]), parameters, n_jobs=-1)
+    classifier = GridSearchCV(VotingClassifier(estimators=estimators), parameters, n_jobs=-1)
     classifier.fit(features, labels)
     return classifier

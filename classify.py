@@ -14,7 +14,8 @@ from ppg.learn import logistic_regression_classifier
 from ppg.learn import support_vector_classifier
 from ppg.learn import gaussian_naive_bayes_classifier
 from ppg.learn import decision_tree_classifier
-from ppg.learn import random_forest_classifier, adaboost_classifier, gradient_boosting_classifier, voting_classifier
+from ppg.learn import random_forest_classifier, adaboost_classifier, gradient_boosting_classifier
+from ppg.learn import voting_classifier
 
 
 def classify():
@@ -55,14 +56,23 @@ def classify():
                 for level_set in level_sets:
                     for feature_type_set in feature_type_sets:
                         train_features, train_labels, test_features, test_labels = get_feature_set(data=json_data, level_set=level_set, feature_type_set=feature_type_set)
+                        estimators = []
                         for classifier_name, classifier_object in classifiers:
                             model_pathname = os.path.join(model_dir, '-'.join(level_set), '-'.join(feature_type_set), classifier_name, '%s.model' % participant)
                             classifier = load_model(pathname=model_pathname)
                             if classifier is None:
-                                classifier = classifier_object(features=train_features, labels=train_labels)
+                                if classifier_name == 'voting':
+                                    classifier = classifier_object(estimators=estimators, features=train_features, labels=train_labels)
+                                else:
+                                    classifier = classifier_object(features=train_features, labels=train_labels)
                                 make_dirs_for_file(pathname=model_pathname)
                                 dump_model(model=classifier, pathname=model_pathname)
                             score = classifier.score(test_features, test_labels)
+                            if classifier_name != 'voting':
+                                if hasattr(classifier, 'best_estimator_'):
+                                    estimators.append((classifier_name, classifier.best_estimator_, ))
+                                else:
+                                    estimators.append((classifier_name, classifier, ))
                             print participant, classifier_name, score
 
 
