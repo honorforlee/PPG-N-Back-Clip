@@ -2,13 +2,13 @@
 Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature Fusion Model
 
 ## Installation
-#### Requirements
+### Requirements
 - [macOS](https://www.apple.com/macos/) (Recommended)
 - [Python 2.7](https://docs.python.org/2/)
 - [Pip](https://pypi.python.org/pypi/pip)
 - [Virtualenv](https://virtualenv.pypa.io/en/stable/)
 
-#### Installing with Virtualenv
+### Installing with Virtualenv
 On Unix, Linux, BSD, macOS, and Cygwin:
 
 ```sh
@@ -28,28 +28,28 @@ On Unix, Linux, BSD, macOS, and Cygwin:
 ```
 
 ## Usage
-#### Data Processing
-###### Raw data segmentation
+### Data Processing
+##### Raw data segmentation
 ```sh
 python segment.py
 ```
 
-###### Preprocessing
+##### Preprocessing
 ```sh
 python preprocess.py
 ```
 
-###### Feature extraction
+##### Feature extraction
 ```sh
 python extract.py
 ```
 
-###### Training set and test set spliting
+##### Training set and test set spliting
 ```sh
 python split.py
 ```
 
-#### Classification
+### Classification
 ```sh
 python classify.py
 ```
