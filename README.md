@@ -24,30 +24,32 @@ On Unix, Linux, BSD, macOS, and Cygwin:
 
 ```sh
 ./scripts/process_data.sh
+./scripts/classify.sh
 ```
 
 ## Usage
-##### Raw data segmentation
+#### Data Processing
+###### Raw data segmentation
 ```sh
 python segment.py
 ```
 
-##### Preprocessing
+###### Preprocessing
 ```sh
 python preprocess.py
 ```
 
-##### Feature extraction
+###### Feature extraction
 ```sh
 python extract.py
 ```
 
-##### Training set and test set spliting
+###### Training set and test set spliting
 ```sh
 python split.py
 ```
 
-##### Classification
+#### Classification
 ```sh
 python classify.py
 ```
@@ -599,6 +601,12 @@ json_data = load_json(pathname, display_info=True)
 dump_json(data, pathname, overwrite=False, display_info=True)
 ```
 ```python
+classifier_object = load_model(pathname, display_info=True)
+```
+```python
+dump_model(model, pathname, overwrite=False, display_info=True)
+```
+```python
 datetime = parse_iso_time_string(timestamp)
 ```
 ```python
@@ -639,6 +647,8 @@ semilogy(args, backend=None)
 │   └── extracted/
 │       ├── <participant>.json
 │       └── ...
+├── models/
+│   └── ...
 ├── ppg/
 │   ├── __init__.py
 │   ├── parameter.py
