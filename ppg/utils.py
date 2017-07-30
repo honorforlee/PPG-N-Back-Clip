@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import os
-from json import load, dump
+import json
+import pickle
 
 
 def make_dirs_for_file(pathname):
@@ -47,7 +48,7 @@ def load_text(pathname, display_info=True):
 def load_json(pathname, display_info=True):
     if exist(pathname=pathname, display_info=display_info):
         with open(pathname, 'r') as f:
-            return load(f)
+            return json.load(f)
 
 
 def dump_json(data, pathname, overwrite=False, display_info=True):
@@ -56,7 +57,22 @@ def dump_json(data, pathname, overwrite=False, display_info=True):
         if display_info:
             print 'Write to file: %s' % pathname
         with open(pathname, 'w') as f:
-            dump(data, f)
+            json.dump(data, f)
+
+
+def load_model(pathname, display_info=True):
+    if exist(pathname=pathname, display_info=display_info):
+        with open(pathname, 'r') as f:
+            return pickle.load(f)
+
+
+def dump_model(model, pathname, overwrite=False, display_info=True):
+    make_dirs_for_file(pathname)
+    if not exist(pathname=pathname, overwrite=overwrite, display_info=display_info):
+        if display_info:
+            print 'Write to file: %s' % pathname
+        with open(pathname, 'w') as f:
+            pickle.dump(model, f)
 
 
 def parse_iso_time_string(timestamp):

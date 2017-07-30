@@ -109,5 +109,8 @@ Thumbs.db
 # Data
 data/
 
+# Models
+models/
+
 # Backup files
 backup/

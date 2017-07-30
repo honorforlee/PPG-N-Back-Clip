@@ -8,14 +8,14 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier, VotingClassifier
 
 
-def get_feature_set(data, task_levels, feature_types):
-    def __flatten(blocks, feature_types):
+def get_feature_set(data, level_set, feature_type_set):
+    def __flatten(blocks, feature_type_set):
         flattened_data = []
         sample_num = 0
         for block in blocks:
             block_sample_num = len(block['ppg45'])
             flattened_block = [[] for x in range(block_sample_num)]
-            for feature_type in feature_types:
+            for feature_type in feature_type_set:
                 for sample_index in range(block_sample_num):
                     if isinstance(block[feature_type], list):
                         if isinstance(block[feature_type][0], list):
@@ -31,14 +31,14 @@ def get_feature_set(data, task_levels, feature_types):
     train_labels = []
     test_features = []
     test_labels = []
-    for task_level in task_levels:
-        for feature_type in feature_types:
-            train_flattened_data, train_sample_num = __flatten(blocks=data['train'][task_level], feature_types=feature_types)
+    for level in level_set:
+        for feature_type in feature_type_set:
+            train_flattened_data, train_sample_num = __flatten(blocks=data['train'][level], feature_type_set=feature_type_set)
             train_features.extend(train_flattened_data)
-            train_labels.extend([task_level for x in range(train_sample_num)])
-            test_flattened_data, test_sample_num = __flatten(blocks=data['test'][task_level], feature_types=feature_types)
+            train_labels.extend([level for x in range(train_sample_num)])
+            test_flattened_data, test_sample_num = __flatten(blocks=data['test'][level], feature_type_set=feature_type_set)
             test_features.extend(test_flattened_data)
-            test_labels.extend([task_level for x in range(test_sample_num)])
+            test_labels.extend([level for x in range(test_sample_num)])
     return train_features, train_labels, test_features, test_labels
 
 
