@@ -111,3 +111,6 @@ data/
 
 # Models
 models/
+
+# Server Logs
+nohup.out
