@@ -581,7 +581,7 @@ classifier = gradient_boosting_classifier(features, labels)
 
 ##### Voting Classifier
 ```python
-classifier = voting_classifier(features, labels)
+classifier = voting_classifier(estimators, features, labels)
 ```
 
 ### Module: `ppg.utils`
