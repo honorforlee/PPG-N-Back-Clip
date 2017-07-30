@@ -1,5 +1,5 @@
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)][repository]
-[![Python](https://img.shields.io/badge/Python-2.7-blue.svg)][python]
+[![Python](https://img.shields.io/badge/python-2.7-blue.svg)][python]
 [![License](https://img.shields.io/github/license/iROCKBUNNY/PPG.svg)][license]
 [![Watchers](https://img.shields.io/github/watchers/iROCKBUNNY/PPG.svg?style=social&label=Watch)][watch]
 [![Stargazers](https://img.shields.io/github/stars/iROCKBUNNY/PPG.svg?style=social&label=Star)][star]
