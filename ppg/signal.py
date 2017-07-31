@@ -3,9 +3,9 @@
 import numpy as np
 from scipy.signal import argrelmax, argrelmin, firwin, convolve
 from scipy.interpolate import interp1d
-from parameter import MINIMUM_PULSE_CYCLE, MAXIMUM_PULSE_CYCLE
-from parameter import PPG_SAMPLE_RATE, PPG_FIR_FILTER_TAP_NUM, PPG_FILTER_CUTOFF, PPG_SYSTOLIC_PEAK_DETECTION_THRESHOLD_COEFFICIENT
-from parameter import ECG_R_PEAK_DETECTION_THRESHOLD
+from params import MINIMUM_PULSE_CYCLE, MAXIMUM_PULSE_CYCLE
+from params import PPG_SAMPLE_RATE, PPG_FIR_FILTER_TAP_NUM, PPG_FILTER_CUTOFF, PPG_SYSTOLIC_PEAK_DETECTION_THRESHOLD_COEFFICIENT
+from params import ECG_R_PEAK_DETECTION_THRESHOLD
 
 
 def find_extrema(signal):

@@ -441,8 +441,8 @@ Excerpt from `ppg/__init__.py`:
 BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 ```
 
-### Module: `ppg.parameter`
-Excerpt from `ppg/parameter.py`:
+### Module: `ppg.params`
+Excerpt from `ppg/params.py`:
 
 ```python
 TOTAL_SESSION_NUM = 2
@@ -658,7 +658,7 @@ semilogy(args, backend=None)
 │   └── ...
 ├── ppg/
 │   ├── __init__.py
-│   ├── parameter.py
+│   ├── params.py
 │   ├── signal.py
 │   ├── feature.py
 │   ├── learn.py

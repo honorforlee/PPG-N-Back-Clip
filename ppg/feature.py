@@ -2,8 +2,8 @@
 
 import numpy as np
 from scipy.signal import argrelmax, argrelmin, welch
-from parameter import PPG_SAMPLE_RATE
-from parameter import ECG_MF_HRV_CUTOFF, ECG_HF_HRV_CUTOFF
+from params import PPG_SAMPLE_RATE
+from params import ECG_MF_HRV_CUTOFF, ECG_HF_HRV_CUTOFF
 
 
 def extract_ppg45(single_waveform, sample_rate=PPG_SAMPLE_RATE):

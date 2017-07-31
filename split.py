@@ -8,7 +8,7 @@ sys.setdefaultencoding('utf-8');
 import os
 import fnmatch
 from ppg import BASE_DIR
-from ppg.parameter import TRAINING_DATA_RATIO
+from ppg.params import TRAINING_DATA_RATIO
 from ppg.utils import make_dirs_for_file, exist, load_json, dump_json, get_change_ratio
 
 
