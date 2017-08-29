@@ -3,6 +3,7 @@
 import os
 import json
 import pickle
+import csv
 
 
 def make_dirs_for_file(pathname):
@@ -73,6 +74,18 @@ def dump_model(model, pathname, overwrite=False, display_info=True):
             print 'Write to file: %s' % pathname
         with open(pathname, 'w') as f:
             pickle.dump(model, f)
+
+
+def export_csv(data, fieldnames, pathname, overwrite=False, display_info=True):
+    make_dirs_for_file(pathname)
+    if not exist(pathname=pathname, overwrite=overwrite, display_info=display_info):
+        if display_info:
+            print 'Write to file: %s' % pathname
+        with open(pathname, 'w') as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames, dialect='excel')
+            writer.writeheader()
+            for row in data:
+                writer.writerow(row)
 
 
 def parse_iso_time_string(timestamp):

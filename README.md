@@ -614,6 +614,9 @@ classifier_object = load_model(pathname, display_info=True)
 dump_model(model, pathname, overwrite=False, display_info=True)
 ```
 ```python
+export_csv(data, fieldnames, pathname, overwrite=False, display_info=True)
+```
+```python
 datetime = parse_iso_time_string(timestamp)
 ```
 ```python
@@ -655,6 +658,8 @@ semilogy(args, backend=None)
 │       ├── <participant>.json
 │       └── ...
 ├── models/
+│   └── ...
+├── results/
 │   └── ...
 ├── ppg/
 │   ├── __init__.py
