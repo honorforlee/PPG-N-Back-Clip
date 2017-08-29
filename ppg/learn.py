@@ -43,7 +43,7 @@ def get_feature_set(data, level_set, feature_type_set):
 
 
 def logistic_regression_classifier(features, labels):
-    classifier = LogisticRegression(random_state=1, n_jobs=-1)
+    classifier = LogisticRegression(random_state=1)
     classifier.fit(features, labels)
     return classifier
 
