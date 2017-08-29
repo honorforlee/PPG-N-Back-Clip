@@ -73,7 +73,7 @@ def classify():
                                     estimators.append((classifier_name, classifier.best_estimator_, ))
                                 else:
                                     estimators.append((classifier_name, classifier, ))
-                            print participant, classifier_name, score
+                            print participant, score, '-'.join(level_set), '-'.join(feature_type_set), classifier_name
 
 
 if __name__ == '__main__':
