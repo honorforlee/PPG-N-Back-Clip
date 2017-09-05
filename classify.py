@@ -8,7 +8,7 @@ sys.setdefaultencoding('utf-8');
 import os
 import fnmatch
 from ppg import BASE_DIR
-from ppg.utils import make_dirs_for_file, exist, load_json, dump_json, load_model, dump_model, export_csv
+from ppg.utils import exist, load_json, dump_json, load_model, dump_model, export_csv
 from ppg.learn import get_feature_set
 from ppg.learn import logistic_regression_classifier
 from ppg.learn import support_vector_classifier
@@ -75,7 +75,6 @@ def classify():
                                     classifier = classifier_object(estimators=estimators, features=train_features, labels=train_labels)
                                 else:
                                     classifier = classifier_object(features=train_features, labels=train_labels)
-                                make_dirs_for_file(pathname=model_pathname)
                                 dump_model(model=classifier, pathname=model_pathname)
                             score = classifier.score(test_features, test_labels)
                             print participant, score, level_set_name, feature_type_set_name, classifier_name
