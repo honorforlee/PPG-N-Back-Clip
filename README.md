@@ -596,7 +596,7 @@ classifier = voting_classifier(estimators, features, labels)
 make_dirs_for_file(pathname)
 ```
 ```python
-result = exist_file(pathname, overwrite=False, display_info=True)
+boolean = exist_file(pathname, overwrite=False, display_info=True)
 ```
 ```python
 text_data = load_text(pathname, display_info=True)
