@@ -1,9 +1,9 @@
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)][repository]
 [![Python](https://img.shields.io/badge/python-2.7-blue.svg)][python]
-[![License](https://img.shields.io/github/license/iROCKBUNNY/PPG.svg)][license]
-[![Watchers](https://img.shields.io/github/watchers/iROCKBUNNY/PPG.svg?style=social&label=Watch)][watch]
-[![Stargazers](https://img.shields.io/github/stars/iROCKBUNNY/PPG.svg?style=social&label=Star)][star]
-[![Forks](https://img.shields.io/github/forks/iROCKBUNNY/PPG.svg?style=social&label=Fork)][fork]
+[![License](https://img.shields.io/github/license/iRB-Lab/PPG.svg)][license]
+[![Watchers](https://img.shields.io/github/watchers/iRB-Lab/PPG.svg?style=social&label=Watch)][watch]
+[![Stargazers](https://img.shields.io/github/stars/iRB-Lab/PPG.svg?style=social&label=Star)][star]
+[![Forks](https://img.shields.io/github/forks/iRB-Lab/PPG.svg?style=social&label=Fork)][fork]
 
 # PPG
 Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature Fusion Model
@@ -19,7 +19,7 @@ Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature
 On Unix, Linux, BSD, macOS, and Cygwin:
 
 ```sh
-git clone https://github.com/iROCKBUNNY/PPG.git
+git clone https://github.com/iRB-Lab/PPG.git
 cd PPG
 virtualenv venv
 source venv/bin/activate
@@ -685,11 +685,11 @@ semilogy(args, backend=None)
 ## License
 [MIT License][license]
 
-[repository]: https://github.com/iROCKBUNNY/PPG "iROCKBUNNY/PPG"
-[license]: https://github.com/iROCKBUNNY/PPG/LICENSE "License"
-[watch]: https://github.com/iROCKBUNNY/PPG/watchers "Watchers"
-[star]: https://github.com/iROCKBUNNY/PPG/stargazers "Stargazers"
-[fork]: https://github.com/iROCKBUNNY/PPG/network "Forks"
+[repository]: https://github.com/iRB-Lab/PPG "iRB-Lab/PPG"
+[license]: https://github.com/iRB-Lab/PPG/LICENSE "License"
+[watch]: https://github.com/iRB-Lab/PPG/watchers "Watchers"
+[star]: https://github.com/iRB-Lab/PPG/stargazers "Stargazers"
+[fork]: https://github.com/iRB-Lab/PPG/network "Forks"
 
 [macos]: https://www.apple.com/macos/ "macOS"
 [python]: https://docs.python.org/2/ "Python 2.7"
