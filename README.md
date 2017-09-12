@@ -547,7 +547,7 @@ mf_hrv_power, hf_hrv_power = extract_hrv_power(rri, sample_rate)
 ### Module: `ppg.learn`
 ##### Get Feature Set
 ```python
-train_features, train_labels, test_features, test_labels = get_feature_set(data, task_levels, feature_types)
+train_features, train_labels, test_features, test_labels = get_feature_set(data, level_set, feature_type_set)
 ```
 
 #### Classifiers
