@@ -1,11 +1,11 @@
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)][repository]
 [![Python](https://img.shields.io/badge/python-2.7-blue.svg)][python]
-[![License](https://img.shields.io/github/license/iRB-Lab/PPG.svg)][license]
-[![Watchers](https://img.shields.io/github/watchers/iRB-Lab/PPG.svg?style=social&label=Watch)][watch]
-[![Stargazers](https://img.shields.io/github/stars/iRB-Lab/PPG.svg?style=social&label=Star)][star]
-[![Forks](https://img.shields.io/github/forks/iRB-Lab/PPG.svg?style=social&label=Fork)][fork]
+[![License](https://img.shields.io/github/license/iRB-Lab/PPG-N-Back-Clip.svg)][license]
+[![Watchers](https://img.shields.io/github/watchers/iRB-Lab/PPG-N-Back-Clip.svg?style=social&label=Watch)][watch]
+[![Stargazers](https://img.shields.io/github/stars/iRB-Lab/PPG-N-Back-Clip.svg?style=social&label=Star)][star]
+[![Forks](https://img.shields.io/github/forks/iRB-Lab/PPG-N-Back-Clip.svg?style=social&label=Fork)][fork]
 
-# PPG
+# PPG/N-Back/Clip
 Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature Fusion Model
 
 ## Installation
@@ -19,7 +19,7 @@ Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature
 On Unix, Linux, BSD, macOS, and Cygwin:
 
 ```sh
-git clone https://github.com/iRB-Lab/PPG.git
+git clone https://github.com/iRB-Lab/PPG-N-Back-Clip.git
 cd PPG
 virtualenv venv
 source venv/bin/activate
@@ -685,11 +685,11 @@ semilogy(args, backend=None)
 ## License
 [MIT License][license]
 
-[repository]: https://github.com/iRB-Lab/PPG "iRB-Lab/PPG"
-[license]: https://github.com/iRB-Lab/PPG/LICENSE "License"
-[watch]: https://github.com/iRB-Lab/PPG/watchers "Watchers"
-[star]: https://github.com/iRB-Lab/PPG/stargazers "Stargazers"
-[fork]: https://github.com/iRB-Lab/PPG/network "Forks"
+[repository]: https://github.com/iRB-Lab/PPG-N-Back-Clip "iRB-Lab/PPG-N-Back-Clip"
+[license]: https://github.com/iRB-Lab/PPG-N-Back-Clip/LICENSE "License"
+[watch]: https://github.com/iRB-Lab/PPG-N-Back-Clip/watchers "Watchers"
+[star]: https://github.com/iRB-Lab/PPG-N-Back-Clip/stargazers "Stargazers"
+[fork]: https://github.com/iRB-Lab/PPG-N-Back-Clip/network "Forks"
 
 [macos]: https://www.apple.com/macos/ "macOS"
 [python]: https://docs.python.org/2/ "Python 2.7"
