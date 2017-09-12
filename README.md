@@ -5,7 +5,7 @@
 [![Stargazers](https://img.shields.io/github/stars/iRB-Lab/PPG-N-Back-Clip.svg?style=social&label=Star)][star]
 [![Forks](https://img.shields.io/github/forks/iRB-Lab/PPG-N-Back-Clip.svg?style=social&label=Fork)][fork]
 
-# PPG/N-Back/Clip
+# PPG &middot; N-Back &middot; Clip
 Photoplethysmogram-based Real-Time Cognitive Load Assessment Using Multi-Feature Fusion Model
 
 ## Installation
