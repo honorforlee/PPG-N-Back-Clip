@@ -20,7 +20,7 @@ On Unix, Linux, BSD, macOS, and Cygwin:
 
 ```sh
 git clone https://github.com/iRB-Lab/PPG-N-Back-Clip.git
-cd PPG
+cd PPG-N-Back-Clip
 virtualenv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -206,7 +206,7 @@ min	CH1	CH2	CH9
       "ppg": {
         "sample_rate": <value>,
         "single_waveforms": [
-          [ ... ]
+          [ ... ],
           ...
         ]
       },
