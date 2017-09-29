@@ -67,7 +67,10 @@ def classify():
                         estimators = []
                         for classifier_name, classifier_object in classifiers:
                             if classifier_name not in result_data[level_set_name][feature_type_set_name]:
-                                result_data[level_set_name][feature_type_set_name][classifier_name] = {}
+                                result_data[level_set_name][feature_type_set_name][classifier_name] = {
+                                    'score': {},
+                                    'round_score': {}
+                                }
                             model_pathname = os.path.join(model_dir, level_set_name, feature_type_set_name, classifier_name, '%s.model' % participant)
                             classifier = load_model(pathname=model_pathname)
                             if classifier is None:
@@ -77,8 +80,10 @@ def classify():
                                     classifier = classifier_object(features=train_features, labels=train_labels)
                                 dump_model(model=classifier, pathname=model_pathname)
                             score = classifier.score(test_features, test_labels)
-                            print participant, score, level_set_name, feature_type_set_name, classifier_name
-                            result_data[level_set_name][feature_type_set_name][classifier_name][participant] = score
+                            round_score = round(score)
+                            print participant, score, round_score, level_set_name, feature_type_set_name, classifier_name
+                            result_data[level_set_name][feature_type_set_name][classifier_name]['score'][participant] = score
+                            result_data[level_set_name][feature_type_set_name][classifier_name]['round_score'][participant] = round_score
 
                             # prepare estimators for the training of voting classifier
                             if classifier_name != 'voting':
@@ -96,10 +101,21 @@ def classify():
                     'feature_set': feature_type_set_name,
                 }
                 for classifier_name in result_data[level_set_name][feature_type_set_name]:
-                    csv_row[classifier_name] = sum(result_data[level_set_name][feature_type_set_name][classifier_name].values()) / len(result_data[level_set_name][feature_type_set_name][classifier_name])
+                    csv_row[classifier_name] = sum(result_data[level_set_name][feature_type_set_name][classifier_name]['score'].values()) / len(result_data[level_set_name][feature_type_set_name][classifier_name]['score'])
                 csv_data.append(csv_row)
             fieldnames = ['feature_set'] + [val[0] for val in classifiers]
-            export_csv(data=csv_data, fieldnames=fieldnames, pathname=os.path.join(result_dir, '%s.csv' % level_set_name), overwrite=True)
+            export_csv(data=csv_data, fieldnames=fieldnames, pathname=os.path.join(result_dir, '%s-score.csv' % level_set_name), overwrite=True)
+            csv_data = []
+            for feature_type_set in feature_type_sets:
+                feature_type_set_name = '-'.join(feature_type_set)
+                csv_row = {
+                    'feature_set': feature_type_set_name,
+                }
+                for classifier_name in result_data[level_set_name][feature_type_set_name]:
+                    csv_row[classifier_name] = sum(result_data[level_set_name][feature_type_set_name][classifier_name]['round_score'].values()) / len(result_data[level_set_name][feature_type_set_name][classifier_name]['score'])
+                csv_data.append(csv_row)
+            fieldnames = ['feature_set'] + [val[0] for val in classifiers]
+            export_csv(data=csv_data, fieldnames=fieldnames, pathname=os.path.join(result_dir, '%s-round_score.csv' % level_set_name), overwrite=True)
 
 
 if __name__ == '__main__':
